@@ -1,0 +1,16 @@
+model TechnicianProfile {
+  id                 String      @id @default(uuid()) @db.Uuid
+  customerId         String    @unique @db.Uuid
+  bio                String?
+  yearsOfExperience  Int
+  status             String
+
+  technician         Customer  @relation(fields: [customerId], references: [id])
+
+  services           Service[]
+  bookings           Booking[]
+  reviews            Review[]
+
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}

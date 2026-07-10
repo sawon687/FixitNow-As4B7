@@ -1,0 +1,16 @@
+model Review {
+  id            BigInt              @id @default(autoincrement())
+
+  bookingId     String    @unique @db.Uuid
+  customerId    String
+  technicianId  String    @db.Uuid
+
+  rating        Int
+  comment       String?
+
+  booking        Booking             @relation(fields: [bookingId], references: [id])
+  customer       Customer            @relation(fields: [customerId], references: [id])
+  technician     TechnicianProfile   @relation(fields: [technicianId], references: [id])
+
+  createdAt      DateTime @default(now())
+}

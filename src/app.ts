@@ -1,8 +1,9 @@
 import express, { Application, Request, Response } from "express"
 import cors from "cors"
-import config from './config'
+
 
 import cookieParser from "cookie-parser"
+import config from './config/config'
 
 const app:Application=express()
 app.use(express.json())
