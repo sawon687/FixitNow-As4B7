@@ -4,6 +4,8 @@ import { prisma } from '../../lib/prisma';
 
 import bcrypt from 'bcryptjs';
 import { IAuth, ILogin } from './auth.interface';
+import { jwtUtils } from '../../utils/jwt';
+import { SignOptions } from 'jsonwebtoken';
 
 class AuthService {
    async createdb(payload:IAuth){
@@ -53,7 +55,12 @@ class AuthService {
             role:userExits.role
             
         }
-        
+         console.log('refrsshsecrtret',config.refreshSecret)
+        const accessToken=jwtUtils.createToken(jwtpayload,config.accessSecret,{expiresIn:config.jwt_refresh_Expires}as SignOptions)
+        const refreshToken=jwtUtils.createToken(jwtpayload,config.refreshSecret,{expiresIn:config.jwt_refresh_Expires} as SignOptions)
+
+            console.log({accessToken,refreshToken})
+        return {accessToken,refreshToken}
     }
 }
 
