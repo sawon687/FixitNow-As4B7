@@ -54,9 +54,9 @@ export const ModelName = {
   TechnicianProfile: 'TechnicianProfile',
   Booking: 'Booking',
   Category: 'Category',
-  Customer: 'Customer',
   Review: 'Review',
-  Service: 'Service'
+  Service: 'Service',
+  users: 'users'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -77,7 +77,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const TechnicianProfileScalarFieldEnum = {
   id: 'id',
-  customerId: 'customerId',
+  userId: 'userId',
   bio: 'bio',
   yearsOfExperience: 'yearsOfExperience',
   status: 'status',
@@ -90,7 +90,7 @@ export type TechnicianProfileScalarFieldEnum = (typeof TechnicianProfileScalarFi
 
 export const BookingScalarFieldEnum = {
   id: 'id',
-  customerId: 'customerId',
+  userId: 'userId',
   technicianId: 'technicianId',
   serviceId: 'serviceId',
   scheduledDate: 'scheduledDate',
@@ -116,23 +116,10 @@ export const CategoryScalarFieldEnum = {
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
-export const CustomerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  password: 'password',
-  role: 'role',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
-
-
 export const ReviewScalarFieldEnum = {
   id: 'id',
   bookingId: 'bookingId',
-  customerId: 'customerId',
+  userId: 'userId',
   technicianId: 'technicianId',
   rating: 'rating',
   comment: 'comment',
@@ -156,6 +143,19 @@ export const ServiceScalarFieldEnum = {
 } as const
 
 export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+export const UsersScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
 
 
 export const SortOrder = {

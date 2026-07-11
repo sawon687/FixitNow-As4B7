@@ -1,25 +1,25 @@
 model Booking {
-  id            String             @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
 
-  customerId    String    @db.Uuid
-  technicianId  String    @db.Uuid
-  serviceId     String    @db.Uuid
+  userId   String @db.Uuid
+  technicianId String @db.Uuid
+  serviceId    String @db.Uuid
 
   scheduledDate DateTime
   address       String
-  status      BookingStatus 
+  status        BookingStatus
 
-  totalAmount   Float
+  totalAmount Float
 
-  cancelledAt   DateTime?
-  completedAt   DateTime?
+  cancelledAt DateTime?
+  completedAt DateTime?
 
-  customer       Customer            @relation(fields: [customerId], references: [id])
-  technician     TechnicianProfile   @relation(fields: [technicianId], references: [id])
-  service        Service             @relation(fields: [serviceId], references: [id])
+  customer   users          @relation(fields: [userId], references: [id])
+  technician TechnicianProfile @relation(fields: [technicianId], references: [id])
+  service    Service           @relation(fields: [serviceId], references: [id])
 
-  review         Review? 
+  review Review?
 
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

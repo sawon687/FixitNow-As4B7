@@ -1,0 +1,60 @@
+
+import config from '../../config/config';
+import { prisma } from '../../lib/prisma';
+
+import bcrypt from 'bcryptjs';
+import { IAuth, ILogin } from './auth.interface';
+
+class AuthService {
+   async createdb(payload:IAuth){
+         {
+        const { email, password ,name,role} = payload
+        console.log('payload',payload)
+        const userexits = await prisma.users.findUnique({ where: { email } })
+        if (userexits) {
+            throw new Error('This email Allready exits')
+        }
+        const hashedPassword = await bcrypt.hash(password, Number(config.bycriptHashRound))
+        console.log(hashedPassword)
+        const user = await prisma.users.create({ data:{
+            email,
+            password: hashedPassword,
+            name,
+            role
+        },
+    omit:{password:true}})
+        console.log('user',user)
+        return user
+
+    }
+        
+
+    }
+
+    async logindb(payload:ILogin){
+           const{email,password}=payload
+        const userExits=await prisma.users.findUnique({where:{email}})
+        if(!userExits)
+        {
+            throw new Error('This email is not found')
+        }
+
+        const passwordMatch=bcrypt.compare(password,userExits.password)
+
+        if(!passwordMatch)
+        {
+             throw new Error('password does not match! please try again')
+        }
+
+        const jwtpayload={
+            id:userExits.id,
+            name:userExits.name,
+            email:userExits.email,
+            role:userExits.role
+            
+        }
+        
+    }
+}
+
+export default new AuthService()

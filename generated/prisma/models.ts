@@ -11,7 +11,7 @@
 export type * from './models/TechnicianProfile'
 export type * from './models/Booking'
 export type * from './models/Category'
-export type * from './models/Customer'
 export type * from './models/Review'
 export type * from './models/Service'
+export type * from './models/users'
 export type * from './commonInputTypes'

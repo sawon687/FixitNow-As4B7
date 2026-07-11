@@ -1,20 +1,20 @@
 model Service {
-  id           String        @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
 
-  technicianId  String   @db.Uuid
-  categoryId    String   @db.Uuid
+  technicianId String @db.Uuid
+  categoryId   String @db.Uuid
 
-  title         String
-  description   String
-  price         Float
-  priceType     String
-  location      String
-  isActive      Boolean             @default(true)
+  title       String
+  description String
+  price       Float
+  priceType   String
+  location    String
+  isActive    Boolean @default(true)
 
-  technician    TechnicianProfile   @relation(fields: [technicianId], references: [id])
-  category      Category            @relation(fields: [categoryId], references: [id])
+  technician TechnicianProfile @relation(fields: [technicianId], references: [id])
+  category   Category          @relation(fields: [categoryId], references: [id])
 
-  bookings      Booking[]
+  bookings Booking[]
 
-  createdAt     DateTime @default(now())
+  createdAt DateTime @default(now())
 }
