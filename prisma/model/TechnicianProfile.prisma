@@ -3,7 +3,8 @@ model TechnicianProfile {
   userId        String  @unique @db.Uuid
   bio               String?
   yearsOfExperience Int
-  status            String
+  skills   String[] 
+  location String
 
   technician users @relation(fields: [userId], references: [id])
 

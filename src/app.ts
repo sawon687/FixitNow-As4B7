@@ -5,6 +5,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import config from './config/config'
 import { authRouter } from './module/auth/auth.route'
+import { technicianRouter } from './module/tecnichian/tecnichian.route'
 
 const app:Application=express()
 app.use(express.json())
@@ -19,6 +20,7 @@ app.get('/',(req:Request,res:Response)=>{
 })
 
 app.use('/api/auth',authRouter)
+app.use('/api/technician',technicianRouter)
 
 
 

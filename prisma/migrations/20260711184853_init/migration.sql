@@ -10,7 +10,8 @@ CREATE TABLE "TechnicianProfile" (
     "userId" UUID NOT NULL,
     "bio" TEXT,
     "yearsOfExperience" INTEGER NOT NULL,
-    "status" TEXT NOT NULL,
+    "skills" TEXT[],
+    "location" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

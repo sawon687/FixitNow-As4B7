@@ -39,7 +39,7 @@ export type TechnicianProfileMinAggregateOutputType = {
   userId: string | null
   bio: string | null
   yearsOfExperience: number | null
-  status: string | null
+  location: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -49,7 +49,7 @@ export type TechnicianProfileMaxAggregateOutputType = {
   userId: string | null
   bio: string | null
   yearsOfExperience: number | null
-  status: string | null
+  location: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -59,7 +59,8 @@ export type TechnicianProfileCountAggregateOutputType = {
   userId: number
   bio: number
   yearsOfExperience: number
-  status: number
+  skills: number
+  location: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -79,7 +80,7 @@ export type TechnicianProfileMinAggregateInputType = {
   userId?: true
   bio?: true
   yearsOfExperience?: true
-  status?: true
+  location?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -89,7 +90,7 @@ export type TechnicianProfileMaxAggregateInputType = {
   userId?: true
   bio?: true
   yearsOfExperience?: true
-  status?: true
+  location?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -99,7 +100,8 @@ export type TechnicianProfileCountAggregateInputType = {
   userId?: true
   bio?: true
   yearsOfExperience?: true
-  status?: true
+  skills?: true
+  location?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -196,7 +198,8 @@ export type TechnicianProfileGroupByOutputType = {
   userId: string
   bio: string | null
   yearsOfExperience: number
-  status: string
+  skills: string[]
+  location: string
   createdAt: Date
   updatedAt: Date
   _count: TechnicianProfileCountAggregateOutputType | null
@@ -229,7 +232,8 @@ export type TechnicianProfileWhereInput = {
   userId?: Prisma.UuidFilter<"TechnicianProfile"> | string
   bio?: Prisma.StringNullableFilter<"TechnicianProfile"> | string | null
   yearsOfExperience?: Prisma.IntFilter<"TechnicianProfile"> | number
-  status?: Prisma.StringFilter<"TechnicianProfile"> | string
+  skills?: Prisma.StringNullableListFilter<"TechnicianProfile">
+  location?: Prisma.StringFilter<"TechnicianProfile"> | string
   createdAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
   technician?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
@@ -243,7 +247,8 @@ export type TechnicianProfileOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   yearsOfExperience?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  skills?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   technician?: Prisma.usersOrderByWithRelationInput
@@ -260,7 +265,8 @@ export type TechnicianProfileWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TechnicianProfileWhereInput | Prisma.TechnicianProfileWhereInput[]
   bio?: Prisma.StringNullableFilter<"TechnicianProfile"> | string | null
   yearsOfExperience?: Prisma.IntFilter<"TechnicianProfile"> | number
-  status?: Prisma.StringFilter<"TechnicianProfile"> | string
+  skills?: Prisma.StringNullableListFilter<"TechnicianProfile">
+  location?: Prisma.StringFilter<"TechnicianProfile"> | string
   createdAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
   technician?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
@@ -274,7 +280,8 @@ export type TechnicianProfileOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   yearsOfExperience?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  skills?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TechnicianProfileCountOrderByAggregateInput
@@ -292,7 +299,8 @@ export type TechnicianProfileScalarWhereWithAggregatesInput = {
   userId?: Prisma.UuidWithAggregatesFilter<"TechnicianProfile"> | string
   bio?: Prisma.StringNullableWithAggregatesFilter<"TechnicianProfile"> | string | null
   yearsOfExperience?: Prisma.IntWithAggregatesFilter<"TechnicianProfile"> | number
-  status?: Prisma.StringWithAggregatesFilter<"TechnicianProfile"> | string
+  skills?: Prisma.StringNullableListFilter<"TechnicianProfile">
+  location?: Prisma.StringWithAggregatesFilter<"TechnicianProfile"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TechnicianProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TechnicianProfile"> | Date | string
 }
@@ -301,7 +309,8 @@ export type TechnicianProfileCreateInput = {
   id?: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
@@ -315,7 +324,8 @@ export type TechnicianProfileUncheckedCreateInput = {
   userId: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutTechnicianInput
@@ -327,7 +337,8 @@ export type TechnicianProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
@@ -341,7 +352,8 @@ export type TechnicianProfileUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutTechnicianNestedInput
@@ -354,7 +366,8 @@ export type TechnicianProfileCreateManyInput = {
   userId: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -363,7 +376,8 @@ export type TechnicianProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -373,9 +387,18 @@ export type TechnicianProfileUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type TechnicianProfileCountOrderByAggregateInput = {
@@ -383,7 +406,8 @@ export type TechnicianProfileCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   yearsOfExperience?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  skills?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -397,7 +421,7 @@ export type TechnicianProfileMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   yearsOfExperience?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -407,7 +431,7 @@ export type TechnicianProfileMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   yearsOfExperience?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -426,6 +450,10 @@ export type TechnicianProfileNullableScalarRelationFilter = {
   isNot?: Prisma.TechnicianProfileWhereInput | null
 }
 
+export type TechnicianProfileCreateskillsInput = {
+  set: string[]
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -440,6 +468,11 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type TechnicianProfileUpdateskillsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -524,7 +557,8 @@ export type TechnicianProfileCreateWithoutBookingsInput = {
   id?: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
@@ -537,7 +571,8 @@ export type TechnicianProfileUncheckedCreateWithoutBookingsInput = {
   userId: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutTechnicianInput
@@ -564,7 +599,8 @@ export type TechnicianProfileUpdateWithoutBookingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
@@ -577,7 +613,8 @@ export type TechnicianProfileUncheckedUpdateWithoutBookingsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutTechnicianNestedInput
@@ -588,7 +625,8 @@ export type TechnicianProfileCreateWithoutReviewsInput = {
   id?: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
@@ -601,7 +639,8 @@ export type TechnicianProfileUncheckedCreateWithoutReviewsInput = {
   userId: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutTechnicianInput
@@ -628,7 +667,8 @@ export type TechnicianProfileUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
@@ -641,7 +681,8 @@ export type TechnicianProfileUncheckedUpdateWithoutReviewsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutTechnicianNestedInput
@@ -652,7 +693,8 @@ export type TechnicianProfileCreateWithoutServicesInput = {
   id?: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
@@ -665,7 +707,8 @@ export type TechnicianProfileUncheckedCreateWithoutServicesInput = {
   userId: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTechnicianInput
@@ -692,7 +735,8 @@ export type TechnicianProfileUpdateWithoutServicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
@@ -705,7 +749,8 @@ export type TechnicianProfileUncheckedUpdateWithoutServicesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutTechnicianNestedInput
@@ -716,7 +761,8 @@ export type TechnicianProfileCreateWithoutTechnicianInput = {
   id?: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   services?: Prisma.ServiceCreateNestedManyWithoutTechnicianInput
@@ -728,7 +774,8 @@ export type TechnicianProfileUncheckedCreateWithoutTechnicianInput = {
   id?: string
   bio?: string | null
   yearsOfExperience: number
-  status: string
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  location: string
   createdAt?: Date | string
   updatedAt?: Date | string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutTechnicianInput
@@ -756,7 +803,8 @@ export type TechnicianProfileUpdateWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUpdateManyWithoutTechnicianNestedInput
@@ -768,7 +816,8 @@ export type TechnicianProfileUncheckedUpdateWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   yearsOfExperience?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  location?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutTechnicianNestedInput
@@ -830,7 +879,8 @@ export type TechnicianProfileSelect<ExtArgs extends runtime.Types.Extensions.Int
   userId?: boolean
   bio?: boolean
   yearsOfExperience?: boolean
-  status?: boolean
+  skills?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
@@ -845,7 +895,8 @@ export type TechnicianProfileSelectCreateManyAndReturn<ExtArgs extends runtime.T
   userId?: boolean
   bio?: boolean
   yearsOfExperience?: boolean
-  status?: boolean
+  skills?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
@@ -856,7 +907,8 @@ export type TechnicianProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   userId?: boolean
   bio?: boolean
   yearsOfExperience?: boolean
-  status?: boolean
+  skills?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
@@ -867,12 +919,13 @@ export type TechnicianProfileSelectScalar = {
   userId?: boolean
   bio?: boolean
   yearsOfExperience?: boolean
-  status?: boolean
+  skills?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TechnicianProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "bio" | "yearsOfExperience" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["technicianProfile"]>
+export type TechnicianProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "bio" | "yearsOfExperience" | "skills" | "location" | "createdAt" | "updatedAt", ExtArgs["result"]["technicianProfile"]>
 export type TechnicianProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   services?: boolean | Prisma.TechnicianProfile$servicesArgs<ExtArgs>
@@ -900,7 +953,8 @@ export type $TechnicianProfilePayload<ExtArgs extends runtime.Types.Extensions.I
     userId: string
     bio: string | null
     yearsOfExperience: number
-    status: string
+    skills: string[]
+    location: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["technicianProfile"]>
@@ -1334,7 +1388,8 @@ export interface TechnicianProfileFieldRefs {
   readonly userId: Prisma.FieldRef<"TechnicianProfile", 'String'>
   readonly bio: Prisma.FieldRef<"TechnicianProfile", 'String'>
   readonly yearsOfExperience: Prisma.FieldRef<"TechnicianProfile", 'Int'>
-  readonly status: Prisma.FieldRef<"TechnicianProfile", 'String'>
+  readonly skills: Prisma.FieldRef<"TechnicianProfile", 'String[]'>
+  readonly location: Prisma.FieldRef<"TechnicianProfile", 'String'>
   readonly createdAt: Prisma.FieldRef<"TechnicianProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"TechnicianProfile", 'DateTime'>
 }
