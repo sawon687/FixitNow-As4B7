@@ -1,5 +1,5 @@
 import { prisma } from '../../lib/prisma';
-import { ITecnichianProfile } from './tecnichian.interface';
+import { IService, ITecnichianProfile } from './tecnichian.interface';
 
 class  TecnichianService {
  async profiledb(payload:ITecnichianProfile){
@@ -10,7 +10,7 @@ class  TecnichianService {
     {
        throw new Error('This id profile allready exits')
     }
-    
+
    const profile=await prisma.technicianProfile.create({data:{
         userId,
         bio,
@@ -33,6 +33,20 @@ class  TecnichianService {
       return userProfile;
     }
 
+ }
+
+ async createServicedb(payload:IService){
+       const {title,technicianId,categoryId,description,price,priceType,location}=payload
+      const results=await prisma.service.create({data:{
+        title,
+        technicianId: String(technicianId),
+        categoryId: String(categoryId),
+        description,
+        price,
+        priceType,
+        location
+      }})
+      return results
  }
 }
 
