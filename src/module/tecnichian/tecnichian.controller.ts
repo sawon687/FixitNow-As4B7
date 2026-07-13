@@ -10,6 +10,9 @@ class TecnichianController extends baseController{
               const user=await tecnichianService.profiledb(payload )
     sendResponse(res,{success:true,message:'user created successfully', status:status.CREATED,data:user})
       })
+
+     
+      
 }
 
 

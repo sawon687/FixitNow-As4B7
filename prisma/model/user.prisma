@@ -4,6 +4,7 @@ model  users {
   email             String             @unique @db.VarChar(100)
   password          String
   role              Role
+  status            UserStatus  @default(ACTIVE)
   bookings          Booking[]
   reviews           Review[]
   createdAt         DateTime           @default(now())
