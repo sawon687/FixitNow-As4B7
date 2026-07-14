@@ -62,6 +62,19 @@ class AuthService {
             console.log({accessToken,refreshToken})
         return {accessToken,refreshToken}
     }
+
+   async meDB(payload:{id:string}&IAuth){
+      const {id,email,role,name}=payload
+     const result=await prisma.users.findUnique({where:{
+        id,
+        email,
+        name,
+        role
+     },
+     omit:{password:true}
+    })
+     return result
+   }
 }
 
 export default new AuthService()
