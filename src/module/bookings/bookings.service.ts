@@ -16,6 +16,10 @@ class BookingsService{
          } })
          return results
    }
+   async getAllBokingsdb(){
+      const results=await prisma.booking.findMany()
+      return results
+   }
 }
 
 

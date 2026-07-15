@@ -13,6 +13,11 @@ class BookingsController extends baseController{
         const  booking=await bookingsService.createBookings(payload)
           sendResponse(res,{success:true,message:'bookings is successfully', status:status.CREATED , data:booking})
   })
+
+  getAllBookings=this.handle(async(req:Request,res:Response)=>{
+    const bookings=await bookingsService.getAllBokingsdb()
+        sendResponse(res,{success:true,message:'all  bookings get is successfully', status:status.CREATED , data:bookings})
+  })
     
 }
 
