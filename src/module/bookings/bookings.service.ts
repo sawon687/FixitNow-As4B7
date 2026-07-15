@@ -20,6 +20,10 @@ class BookingsService{
       const results=await prisma.booking.findMany()
       return results
    }
+    async getsingleBokingsdb(id:string){
+      const results=await prisma.booking.findUniqueOrThrow({where:{id}})
+      return results
+   }
 }
 
 
