@@ -24,6 +24,7 @@ class TecnichianController extends baseController{
     })
     getsingletecnichian=this.handle(async(req:Request,res:Response)=>{
       const id=req.params?.id as string
+      console.log('id service',id)
       const techchian=await tecnichianService.getsingleTecnichiandb(id)
 
          sendResponse(res,{message:'get tecnishian found',success:true,status:status.OK,data:techchian})

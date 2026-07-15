@@ -10,6 +10,6 @@ const router=Router()
 
 router.put('/profile',auth('TECHNICIAN'),tecnichianController.tecnProfile)
 router.get('/',tecnichianController.getAlltecnishian)
-router.get('/:id')
+router.get('/:id',tecnichianController.getsingletecnichian)
 
 export const technicianRouter=router
