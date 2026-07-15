@@ -5,6 +5,7 @@ import tecnichianService from './tecnichian.service';
 import { sendResponse } from '../../utils/sendResponse';
 import status from "http-status";
 import { IAuth } from '../auth/auth.interface';
+import { send } from 'node:process';
 
 class TecnichianController extends baseController{
  tecnProfile=this.handle(async(req:Request,res:Response)=>{
@@ -24,6 +25,17 @@ class TecnichianController extends baseController{
 
          sendResponse(res,{message:'service created successfully',status:status.CREATED,success:true,data:service})
       })
+
+
+    getService=this.handle(async(req:Request,res:Response)=>{
+           const service=await tecnichianService.getServicedb()
+           sendResponse(res,{message:'get all service successfully',status:status.OK,success:true,data:service})
+    })
+
+    getAlltecnishian=this.handle(async(req:Request,res:Response)=>{
+      const tecnichian=await tecnichianService.getAlltecnichiandb()
+      sendResponse(res,{message:'get all tecnishian found',success:true,status:status.OK,data:tecnichian})
+    })
       
 }
 

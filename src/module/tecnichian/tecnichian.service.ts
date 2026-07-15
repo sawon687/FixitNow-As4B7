@@ -61,6 +61,19 @@ class TecnichianService {
     console.log("service results", results);
     return results;
   }
+
+  async getServicedb(){
+    const results=await prisma.service.findMany()
+    return results
+  }
+  async getAlltecnichiandb(){
+    const results=await prisma.users.findMany({where:{role:'TECHNICIAN'},omit:{password:true},
+      include:{
+        technicianProfile:true
+      }
+    })
+    return results
+  }
 }
 
 export default new TecnichianService();

@@ -21,8 +21,8 @@ app.get('/',(req:Request,res:Response)=>{
 })
 
 app.use('/api/auth',authRouter)
-app.use('/api/technician',technicianRouter)
+app.use('/api/technicians',technicianRouter)
 app.use('/api/admin',adminroutes)
-
+app.use('/api',technicianRouter)
 
 export default app

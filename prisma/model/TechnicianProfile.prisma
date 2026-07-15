@@ -5,8 +5,8 @@ model TechnicianProfile {
   yearsOfExperience Int
   skills   String[] 
   location String
-
-  technician users @relation(fields: [userId], references: [id])
+  avgRating    Float   @default(0)
+  technician users @relation(fields: [userId], references: [id],onDelete:Cascade)
 
   services Service[]
   bookings Booking[]

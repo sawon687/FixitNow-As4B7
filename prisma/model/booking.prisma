@@ -14,9 +14,9 @@ model Booking {
   cancelledAt DateTime?
   completedAt DateTime?
 
-  customer   users          @relation(fields: [userId], references: [id])
-  technician TechnicianProfile @relation(fields: [technicianId], references: [id])
-  service    Service           @relation(fields: [serviceId], references: [id])
+  customer   users          @relation(fields: [userId], references: [id],onDelete:Cascade)
+  technician TechnicianProfile @relation(fields: [technicianId], references: [id],onDelete:Cascade)
+  service    Service           @relation(fields: [serviceId], references: [id],onDelete:Cascade)
 
   review Review?
 
