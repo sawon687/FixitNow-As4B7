@@ -7,7 +7,7 @@ model Booking {
 
   scheduledDate DateTime
   address       String
-  status        BookingStatus
+  status        BookingStatus @default(REQUESTED)
 
   totalAmount Float
 

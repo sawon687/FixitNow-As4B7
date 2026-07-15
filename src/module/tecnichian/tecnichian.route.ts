@@ -9,8 +9,7 @@ const router=Router()
 
 
 router.put('/profile',auth('TECHNICIAN'),tecnichianController.tecnProfile)
-router.post('/service',auth("TECHNICIAN"),tecnichianController.createService)
-router.get('/service',tecnichianController.getService)
-router.get('/technicians',tecnichianController.getAlltecnishian)
+router.get('/',tecnichianController.getAlltecnishian)
+router.get('/:id')
 
 export const technicianRouter=router

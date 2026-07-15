@@ -37,40 +37,21 @@ class TecnichianService {
     }
   }
 
-  async createServicedb(payload: IService,userId:string) {
-
-    const { title, description, price, priceType, location } =payload;
-     const technicianProfileExits=await prisma.technicianProfile.findUnique({where:{userId}})
-     if(!technicianProfileExits){
-        throw new Error('tecnician profile is not found! pleace techchian profile updated')
-     }
-
-    const technicianId = String(technicianProfileExits.id);
-    const categoryId=String(payload.categoryId)
-    const results = await prisma.service.create({
-      data: {
-        title,
-        technicianId,
-        categoryId,
-        description,
-        price,
-        priceType,
-        location,
-      },
-    });
-    console.log("service results", results);
-    return results;
-  }
-
-  async getServicedb(){
-    const results=await prisma.service.findMany()
-    return results
-  }
+  
   async getAlltecnichiandb(){
     const results=await prisma.users.findMany({where:{role:'TECHNICIAN'},omit:{password:true},
       include:{
         technicianProfile:true
       }
+    })
+    return results
+  }
+  async getsingleTecnichiandb(id:string){
+    const results=await prisma.technicianProfile.findUniqueOrThrow({where:{id},
+     include:{
+      technician:true,
+      reviews:true
+     }
     })
     return results
   }

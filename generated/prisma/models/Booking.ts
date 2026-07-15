@@ -361,7 +361,7 @@ export type BookingCreateInput = {
   id?: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -380,7 +380,7 @@ export type BookingUncheckedCreateInput = {
   serviceId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -428,7 +428,7 @@ export type BookingCreateManyInput = {
   serviceId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -683,7 +683,7 @@ export type BookingCreateWithoutTechnicianInput = {
   id?: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -700,7 +700,7 @@ export type BookingUncheckedCreateWithoutTechnicianInput = {
   serviceId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -757,7 +757,7 @@ export type BookingCreateWithoutReviewInput = {
   id?: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -775,7 +775,7 @@ export type BookingUncheckedCreateWithoutReviewInput = {
   serviceId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -833,7 +833,7 @@ export type BookingCreateWithoutServiceInput = {
   id?: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -850,7 +850,7 @@ export type BookingUncheckedCreateWithoutServiceInput = {
   technicianId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -889,7 +889,7 @@ export type BookingCreateWithoutCustomerInput = {
   id?: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -906,7 +906,7 @@ export type BookingUncheckedCreateWithoutCustomerInput = {
   serviceId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -947,7 +947,7 @@ export type BookingCreateManyTechnicianInput = {
   serviceId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -1005,7 +1005,7 @@ export type BookingCreateManyServiceInput = {
   technicianId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -1063,7 +1063,7 @@ export type BookingCreateManyCustomerInput = {
   serviceId: string
   scheduledDate: Date | string
   address: string
-  status: $Enums.BookingStatus
+  status?: $Enums.BookingStatus
   totalAmount: number
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
