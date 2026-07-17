@@ -6,6 +6,7 @@ import { sendResponse } from '../../utils/sendResponse';
 import status from "http-status";
 
 
+
 class TecnichianController extends baseController{
  tecnProfile=this.handle(async(req:Request,res:Response)=>{
            const payload=req.body as ITecnichianProfile
@@ -22,13 +23,28 @@ class TecnichianController extends baseController{
       const tecnichian=await tecnichianService.getAlltecnichiandb()
       sendResponse(res,{message:'get all tecnishian found',success:true,status:status.OK,data:tecnichian})
     })
-    getsingletecnichian=this.handle(async(req:Request,res:Response)=>{
-      const id=req.params?.id as string
-      console.log('id service',id)
-      const techchian=await tecnichianService.getsingleTecnichiandb(id)
+ 
 
-         sendResponse(res,{message:'get tecnishian found',success:true,status:status.OK,data:techchian})
+    createAvalibility=this.handle(async(req:Request,res:Response)=>{
+          const payload=req.body
+          const userId=req.user?.id as string
+       
+        
+          const availability=await tecnichianService.createAvabilitydb(payload,userId)
+          sendResponse(res,{message:'availabililty created is successfully',success:true,status:status.OK,data:availability})
+
     })
+
+   
+
+      getAllBookingsTecnichian=this.handle(async(req:Request,res:Response)=>{
+      console.log('users',req.user)
+     const userId=req.user?.id as string
+     console.log('userId ',userId)
+    const bookings=await tecnichianService.getAllBokingsTecnichiandb(userId)
+        sendResponse(res,{success:true,message:'all  bookings tecnichian get  is successfully', status:status.CREATED , data:bookings})
+  })
+   
       
 }
 

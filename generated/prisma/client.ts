@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type TechnicianProfile = Prisma.TechnicianProfileModel
 /**
+ * Model Availability
+ * 
+ */
+export type Availability = Prisma.AvailabilityModel
+/**
  * Model Booking
  * 
  */

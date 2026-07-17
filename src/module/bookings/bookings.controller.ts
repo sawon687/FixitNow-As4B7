@@ -15,7 +15,8 @@ class BookingsController extends baseController{
   })
 
   getAllBookings=this.handle(async(req:Request,res:Response)=>{
-    const bookings=await bookingsService.getAllBokingsdb()
+     const userId=req.user?.id as string
+    const bookings=await bookingsService.getAllBokingsdb(userId)
         sendResponse(res,{success:true,message:'all  bookings get is successfully', status:status.CREATED , data:bookings})
   })
     getsingleBookings=this.handle(async(req:Request,res:Response)=>{

@@ -15,5 +15,9 @@ class AdminService{
         const result=await prisma.users.findMany({omit:{password:true}})
       return  result
     }
+    async getAllBookingsdb(){
+        const result=await prisma.booking.findMany()
+        return result
+    }
 }
 export default new AdminService()

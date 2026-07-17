@@ -1,3 +1,4 @@
+import { BookingStatus } from '../../../generated/prisma/enums'
 
 export interface ITecnichianProfile {
      userId:string
@@ -6,4 +7,15 @@ export interface ITecnichianProfile {
      skills: string[],
      location:string
 
+}
+
+export interface  IAvailability {  
+  date:Date
+  startTime:string 
+  endTime:string
+
+}
+
+export interface IBookingStatus{
+     status: BookingStatus
 }

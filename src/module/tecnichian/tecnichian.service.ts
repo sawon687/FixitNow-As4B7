@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma";
-import { IService, ITecnichianProfile } from "./tecnichian.interface";
+import {  IAvailability, IBookingStatus, ITecnichianProfile } from "./tecnichian.interface";
 
 class TecnichianService {
   async profiledb(payload: ITecnichianProfile) {
@@ -27,10 +27,10 @@ class TecnichianService {
         where: {
           id: userId,
         },
-        omit: { password: true },
         include: {
           technicianProfile: true,
         },
+        omit:{password:true},
       });
 
       return userProfile;
@@ -39,22 +39,42 @@ class TecnichianService {
 
   
   async getAlltecnichiandb(){
-    const results=await prisma.users.findMany({where:{role:'TECHNICIAN'},omit:{password:true},
+    const results=await prisma.users.findMany({
+      where:{role:'TECHNICIAN'},
       include:{
         technicianProfile:true
       }
     })
     return results
   }
-  async getsingleTecnichiandb(id:string){
-    const results=await prisma.technicianProfile.findUniqueOrThrow({where:{id},
-     include:{
-      technician:true,
-      reviews:true
-     }
-    })
+ 
+
+  async createAvabilitydb(payload:IAvailability,userId:string){
+    console.log('abalibilty',payload)
+    const technichianExit=await prisma.technicianProfile.findUniqueOrThrow({where:{id:userId}})
+    console.log('technishin profile',technichianExit)
+    const results=await prisma.availability.create({data:{
+      ...payload,
+      technicianId:technichianExit.id
+    }})
+
     return results
   }
+
+
+
+   async getAllBokingsTecnichiandb(userId:string){
+    const  technicianProfile=await prisma.technicianProfile.findUnique({where:{userId}})
+    console.log('technishanPRofile',technicianProfile)
+    if(!technicianProfile)
+    {
+       throw new Error('This tecnishian not found pleace update your tecnishian')
+    }
+   
+      const results=await prisma.booking.findMany({where:{technicianId:technicianProfile.id}})
+      return results
+   }
+
 }
 
 export default new TecnichianService();

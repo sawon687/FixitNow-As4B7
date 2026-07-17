@@ -16,8 +16,8 @@ class BookingsService{
          } })
          return results
    }
-   async getAllBokingsdb(){
-      const results=await prisma.booking.findMany()
+   async getAllBokingsdb(userId:string){
+      const results=await prisma.booking.findMany({where:{userId}})
       return results
    }
     async getsingleBokingsdb(id:string){

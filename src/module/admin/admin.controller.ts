@@ -22,6 +22,11 @@ class AdminCotroller extends baseController{
         const users=await adminService.getAllUsersdb()
         sendResponse(res,{message:'Get all users',status:status.OK,success:true,data:users})
      })
+      getAllBookings=this.handle(async(req:Request,res:Response)=>{
+         const booking=await adminService.getAllBookingsdb()
+
+          sendResponse(res,{message:'Get all bookings',status:status.OK,success:true,data:booking})
+    })
 }
 
 export default new AdminCotroller()
