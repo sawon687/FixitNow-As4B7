@@ -74,7 +74,7 @@ if(!technicianProfile){
   }
 
 
-  const bookingExists = await prisma.booking.findFirst({
+  const bookingExists = await prisma.booking.findUnique({
     where:{
       id,
       technicianId: technicianProfile.id

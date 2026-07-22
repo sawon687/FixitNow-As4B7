@@ -38,6 +38,11 @@ export type Booking = Prisma.BookingModel
  */
 export type Category = Prisma.CategoryModel
 /**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
  * Model Review
  * 
  */
@@ -48,7 +53,7 @@ export type Review = Prisma.ReviewModel
  */
 export type Service = Prisma.ServiceModel
 /**
- * Model users
+ * Model Users
  * 
  */
-export type users = Prisma.usersModel
+export type Users = Prisma.UsersModel

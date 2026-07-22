@@ -248,7 +248,7 @@ export type TechnicianProfileWhereInput = {
   avgRating?: Prisma.FloatFilter<"TechnicianProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
-  technician?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
+  technician?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.UsersWhereInput>
   services?: Prisma.ServiceListRelationFilter
   bookings?: Prisma.BookingListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
@@ -265,7 +265,7 @@ export type TechnicianProfileOrderByWithRelationInput = {
   avgRating?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  technician?: Prisma.usersOrderByWithRelationInput
+  technician?: Prisma.UsersOrderByWithRelationInput
   services?: Prisma.ServiceOrderByRelationAggregateInput
   bookings?: Prisma.BookingOrderByRelationAggregateInput
   reviews?: Prisma.ReviewOrderByRelationAggregateInput
@@ -285,7 +285,7 @@ export type TechnicianProfileWhereUniqueInput = Prisma.AtLeast<{
   avgRating?: Prisma.FloatFilter<"TechnicianProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TechnicianProfile"> | Date | string
-  technician?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
+  technician?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.UsersWhereInput>
   services?: Prisma.ServiceListRelationFilter
   bookings?: Prisma.BookingListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
@@ -333,7 +333,7 @@ export type TechnicianProfileCreateInput = {
   avgRating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
+  technician: Prisma.UsersCreateNestedOneWithoutTechnicianProfileInput
   services?: Prisma.ServiceCreateNestedManyWithoutTechnicianInput
   bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianInput
@@ -365,7 +365,7 @@ export type TechnicianProfileUpdateInput = {
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
+  technician?: Prisma.UsersUpdateOneRequiredWithoutTechnicianProfileNestedInput
   services?: Prisma.ServiceUpdateManyWithoutTechnicianNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutTechnicianNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutTechnicianNestedInput
@@ -619,7 +619,7 @@ export type TechnicianProfileCreateWithoutAvailabilitiesInput = {
   avgRating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
+  technician: Prisma.UsersCreateNestedOneWithoutTechnicianProfileInput
   services?: Prisma.ServiceCreateNestedManyWithoutTechnicianInput
   bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianInput
@@ -665,7 +665,7 @@ export type TechnicianProfileUpdateWithoutAvailabilitiesInput = {
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
+  technician?: Prisma.UsersUpdateOneRequiredWithoutTechnicianProfileNestedInput
   services?: Prisma.ServiceUpdateManyWithoutTechnicianNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutTechnicianNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutTechnicianNestedInput
@@ -695,7 +695,7 @@ export type TechnicianProfileCreateWithoutBookingsInput = {
   avgRating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
+  technician: Prisma.UsersCreateNestedOneWithoutTechnicianProfileInput
   services?: Prisma.ServiceCreateNestedManyWithoutTechnicianInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianInput
   availabilities?: Prisma.AvailabilityCreateNestedManyWithoutTechnicianInput
@@ -741,7 +741,7 @@ export type TechnicianProfileUpdateWithoutBookingsInput = {
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
+  technician?: Prisma.UsersUpdateOneRequiredWithoutTechnicianProfileNestedInput
   services?: Prisma.ServiceUpdateManyWithoutTechnicianNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutTechnicianNestedInput
   availabilities?: Prisma.AvailabilityUpdateManyWithoutTechnicianNestedInput
@@ -771,7 +771,7 @@ export type TechnicianProfileCreateWithoutReviewsInput = {
   avgRating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
+  technician: Prisma.UsersCreateNestedOneWithoutTechnicianProfileInput
   services?: Prisma.ServiceCreateNestedManyWithoutTechnicianInput
   bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianInput
   availabilities?: Prisma.AvailabilityCreateNestedManyWithoutTechnicianInput
@@ -817,7 +817,7 @@ export type TechnicianProfileUpdateWithoutReviewsInput = {
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
+  technician?: Prisma.UsersUpdateOneRequiredWithoutTechnicianProfileNestedInput
   services?: Prisma.ServiceUpdateManyWithoutTechnicianNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutTechnicianNestedInput
   availabilities?: Prisma.AvailabilityUpdateManyWithoutTechnicianNestedInput
@@ -847,7 +847,7 @@ export type TechnicianProfileCreateWithoutServicesInput = {
   avgRating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  technician: Prisma.usersCreateNestedOneWithoutTechnicianProfileInput
+  technician: Prisma.UsersCreateNestedOneWithoutTechnicianProfileInput
   bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianInput
   availabilities?: Prisma.AvailabilityCreateNestedManyWithoutTechnicianInput
@@ -893,7 +893,7 @@ export type TechnicianProfileUpdateWithoutServicesInput = {
   avgRating?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technician?: Prisma.usersUpdateOneRequiredWithoutTechnicianProfileNestedInput
+  technician?: Prisma.UsersUpdateOneRequiredWithoutTechnicianProfileNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutTechnicianNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutTechnicianNestedInput
   availabilities?: Prisma.AvailabilityUpdateManyWithoutTechnicianNestedInput
@@ -1058,7 +1058,7 @@ export type TechnicianProfileSelect<ExtArgs extends runtime.Types.Extensions.Int
   avgRating?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  technician?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   services?: boolean | Prisma.TechnicianProfile$servicesArgs<ExtArgs>
   bookings?: boolean | Prisma.TechnicianProfile$bookingsArgs<ExtArgs>
   reviews?: boolean | Prisma.TechnicianProfile$reviewsArgs<ExtArgs>
@@ -1076,7 +1076,7 @@ export type TechnicianProfileSelectCreateManyAndReturn<ExtArgs extends runtime.T
   avgRating?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  technician?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["technicianProfile"]>
 
 export type TechnicianProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1089,7 +1089,7 @@ export type TechnicianProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   avgRating?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  technician?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["technicianProfile"]>
 
 export type TechnicianProfileSelectScalar = {
@@ -1106,7 +1106,7 @@ export type TechnicianProfileSelectScalar = {
 
 export type TechnicianProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "bio" | "yearsOfExperience" | "skills" | "location" | "avgRating" | "createdAt" | "updatedAt", ExtArgs["result"]["technicianProfile"]>
 export type TechnicianProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  technician?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   services?: boolean | Prisma.TechnicianProfile$servicesArgs<ExtArgs>
   bookings?: boolean | Prisma.TechnicianProfile$bookingsArgs<ExtArgs>
   reviews?: boolean | Prisma.TechnicianProfile$reviewsArgs<ExtArgs>
@@ -1114,16 +1114,16 @@ export type TechnicianProfileInclude<ExtArgs extends runtime.Types.Extensions.In
   _count?: boolean | Prisma.TechnicianProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TechnicianProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  technician?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
 }
 export type TechnicianProfileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  technician?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  technician?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
 }
 
 export type $TechnicianProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TechnicianProfile"
   objects: {
-    technician: Prisma.$usersPayload<ExtArgs>
+    technician: Prisma.$UsersPayload<ExtArgs>
     services: Prisma.$ServicePayload<ExtArgs>[]
     bookings: Prisma.$BookingPayload<ExtArgs>[]
     reviews: Prisma.$ReviewPayload<ExtArgs>[]
@@ -1533,7 +1533,7 @@ readonly fields: TechnicianProfileFieldRefs;
  */
 export interface Prisma__TechnicianProfileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  technician<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  technician<T extends Prisma.UsersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsersDefaultArgs<ExtArgs>>): Prisma.Prisma__UsersClient<runtime.Types.Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   services<T extends Prisma.TechnicianProfile$servicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TechnicianProfile$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bookings<T extends Prisma.TechnicianProfile$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TechnicianProfile$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.TechnicianProfile$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TechnicianProfile$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>

@@ -17,3 +17,9 @@ enum UserStatus {
   ACTIVE
   BANNED
 }
+
+enum PaymentStatus {
+    PENDING
+    PAID
+    CANCELLED
+}

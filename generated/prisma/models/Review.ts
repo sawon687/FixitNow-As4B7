@@ -233,7 +233,7 @@ export type ReviewWhereInput = {
   comment?: Prisma.StringNullableFilter<"Review"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
   booking?: Prisma.XOR<Prisma.BookingScalarRelationFilter, Prisma.BookingWhereInput>
-  customer?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
+  customer?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.UsersWhereInput>
   technician?: Prisma.XOR<Prisma.TechnicianProfileScalarRelationFilter, Prisma.TechnicianProfileWhereInput>
 }
 
@@ -246,7 +246,7 @@ export type ReviewOrderByWithRelationInput = {
   comment?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   booking?: Prisma.BookingOrderByWithRelationInput
-  customer?: Prisma.usersOrderByWithRelationInput
+  customer?: Prisma.UsersOrderByWithRelationInput
   technician?: Prisma.TechnicianProfileOrderByWithRelationInput
 }
 
@@ -262,7 +262,7 @@ export type ReviewWhereUniqueInput = Prisma.AtLeast<{
   comment?: Prisma.StringNullableFilter<"Review"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Review"> | Date | string
   booking?: Prisma.XOR<Prisma.BookingScalarRelationFilter, Prisma.BookingWhereInput>
-  customer?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
+  customer?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.UsersWhereInput>
   technician?: Prisma.XOR<Prisma.TechnicianProfileScalarRelationFilter, Prisma.TechnicianProfileWhereInput>
 }, "id" | "bookingId">
 
@@ -300,7 +300,7 @@ export type ReviewCreateInput = {
   comment?: string | null
   createdAt?: Date | string
   booking: Prisma.BookingCreateNestedOneWithoutReviewInput
-  customer: Prisma.usersCreateNestedOneWithoutReviewsInput
+  customer: Prisma.UsersCreateNestedOneWithoutReviewsInput
   technician: Prisma.TechnicianProfileCreateNestedOneWithoutReviewsInput
 }
 
@@ -320,7 +320,7 @@ export type ReviewUpdateInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booking?: Prisma.BookingUpdateOneRequiredWithoutReviewNestedInput
-  customer?: Prisma.usersUpdateOneRequiredWithoutReviewsNestedInput
+  customer?: Prisma.UsersUpdateOneRequiredWithoutReviewsNestedInput
   technician?: Prisma.TechnicianProfileUpdateOneRequiredWithoutReviewsNestedInput
 }
 
@@ -536,7 +536,7 @@ export type ReviewCreateWithoutTechnicianInput = {
   comment?: string | null
   createdAt?: Date | string
   booking: Prisma.BookingCreateNestedOneWithoutReviewInput
-  customer: Prisma.usersCreateNestedOneWithoutReviewsInput
+  customer: Prisma.UsersCreateNestedOneWithoutReviewsInput
 }
 
 export type ReviewUncheckedCreateWithoutTechnicianInput = {
@@ -592,7 +592,7 @@ export type ReviewCreateWithoutBookingInput = {
   rating: number
   comment?: string | null
   createdAt?: Date | string
-  customer: Prisma.usersCreateNestedOneWithoutReviewsInput
+  customer: Prisma.UsersCreateNestedOneWithoutReviewsInput
   technician: Prisma.TechnicianProfileCreateNestedOneWithoutReviewsInput
 }
 
@@ -626,7 +626,7 @@ export type ReviewUpdateWithoutBookingInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.usersUpdateOneRequiredWithoutReviewsNestedInput
+  customer?: Prisma.UsersUpdateOneRequiredWithoutReviewsNestedInput
   technician?: Prisma.TechnicianProfileUpdateOneRequiredWithoutReviewsNestedInput
 }
 
@@ -698,7 +698,7 @@ export type ReviewUpdateWithoutTechnicianInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booking?: Prisma.BookingUpdateOneRequiredWithoutReviewNestedInput
-  customer?: Prisma.usersUpdateOneRequiredWithoutReviewsNestedInput
+  customer?: Prisma.UsersUpdateOneRequiredWithoutReviewsNestedInput
 }
 
 export type ReviewUncheckedUpdateWithoutTechnicianInput = {
@@ -766,7 +766,7 @@ export type ReviewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   comment?: boolean
   createdAt?: boolean
   booking?: boolean | Prisma.BookingDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["review"]>
 
@@ -779,7 +779,7 @@ export type ReviewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   comment?: boolean
   createdAt?: boolean
   booking?: boolean | Prisma.BookingDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["review"]>
 
@@ -792,7 +792,7 @@ export type ReviewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   comment?: boolean
   createdAt?: boolean
   booking?: boolean | Prisma.BookingDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["review"]>
 
@@ -809,17 +809,17 @@ export type ReviewSelectScalar = {
 export type ReviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bookingId" | "userId" | "technicianId" | "rating" | "comment" | "createdAt", ExtArgs["result"]["review"]>
 export type ReviewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   booking?: boolean | Prisma.BookingDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
 }
 export type ReviewIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   booking?: boolean | Prisma.BookingDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
 }
 export type ReviewIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   booking?: boolean | Prisma.BookingDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
 }
 
@@ -827,7 +827,7 @@ export type $ReviewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Review"
   objects: {
     booking: Prisma.$BookingPayload<ExtArgs>
-    customer: Prisma.$usersPayload<ExtArgs>
+    customer: Prisma.$UsersPayload<ExtArgs>
     technician: Prisma.$TechnicianProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1233,7 +1233,7 @@ readonly fields: ReviewFieldRefs;
 export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   booking<T extends Prisma.BookingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BookingDefaultArgs<ExtArgs>>): Prisma.Prisma__BookingClient<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  customer<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.UsersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsersDefaultArgs<ExtArgs>>): Prisma.Prisma__UsersClient<runtime.Types.Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   technician<T extends Prisma.TechnicianProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TechnicianProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__TechnicianProfileClient<runtime.Types.Result.GetResult<Prisma.$TechnicianProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.

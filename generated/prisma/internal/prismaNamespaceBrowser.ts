@@ -55,9 +55,10 @@ export const ModelName = {
   Availability: 'Availability',
   Booking: 'Booking',
   Category: 'Category',
+  Payment: 'Payment',
   Review: 'Review',
   Service: 'Service',
-  users: 'users'
+  Users: 'Users'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -132,6 +133,20 @@ export const CategoryScalarFieldEnum = {
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  transactionId: 'transactionId',
+  bookingId: 'bookingId',
+  customerId: 'customerId',
+  amount: 'amount',
+  status: 'status',
+  paidAt: 'paidAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
 export const ReviewScalarFieldEnum = {
