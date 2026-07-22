@@ -19,3 +19,12 @@ export interface  IAvailability {
 export interface IBookingStatus{
      status: BookingStatus
 }
+export interface IQuery {
+     date?:Date
+}
+
+export interface IAvailability{
+      id:string
+      isAvailable: boolean,
+      isBooked:boolean,
+}

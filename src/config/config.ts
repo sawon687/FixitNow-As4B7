@@ -12,5 +12,6 @@ const config = {
   refreshSecret: process.env.JWT_REFRESH_SECRET as string,
   jwt_access_Expires: process.env.JWT_ACCESS_EXPIRES_IN as string,
   jwt_refresh_Expires: process.env.JWT_REFRESH_EXPIRES_IN as string,
+  stripe_secret_Key:process.env.STRIPE_SECRET_KEY as string
 };
 export default config;
