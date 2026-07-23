@@ -1,8 +1,10 @@
-import config from '../config/config';
-import { prisma } from '../lib/prisma';
-import { stripe } from '../lib/stripe';
-import { ICustomer } from './payment.interface';
 
+
+import { PaymentStatus } from '../../../generated/prisma/enums';
+import config from '../../config/config';
+import { prisma } from '../../lib/prisma';
+import { stripe } from '../../lib/stripe';
+import { ICustomer } from './payment.interface';
 
 class PaymentService {
   async paymentCreateDB(bookingId: string, user: ICustomer) {
@@ -36,7 +38,7 @@ class PaymentService {
             product_data: {
               name: "FixItNow Service Booking",
             },
-            unit_amount: Math.round(booking.totalAmount),
+            unit_amount: Math.round(booking.totalAmount * 120),
           },
           quantity: 1,
         },
@@ -70,6 +72,32 @@ class PaymentService {
       sessionId: session.id,
       paymentUrl: session.url,
     };
+  }
+
+  async confrimpaymentDB(sessionId:string){
+       
+  const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+  if (!session) {
+    throw new Error("Checkout session not found");
+  }
+
+  if (session.payment_status !== "paid") {
+    throw new Error("Payment not completed");
+  }
+
+  const payment = await prisma.payment.update({
+    where: {
+      transactionId: session.id,
+    },
+    data: {
+      status: PaymentStatus.PAID ,
+      paidAt:new Date()
+    },
+  });
+
+  return payment;
+
   }
 }
 

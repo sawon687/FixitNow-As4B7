@@ -2,15 +2,15 @@ model Review {
   id String @id @default(uuid()) @db.Uuid
 
   bookingId    String @unique @db.Uuid
-  userId   String @db.Uuid
+  userId       String @db.Uuid
   technicianId String @db.Uuid
 
-  rating  Int
+  rating  Float
   comment String?
 
-  booking    Booking           @relation(fields: [bookingId], references: [id],onDelete:Cascade)
-  customer   Users         @relation(fields: [userId], references: [id],onDelete:Cascade)
-  technician TechnicianProfile @relation(fields: [technicianId], references: [id],onDelete:Cascade)
+  booking    Booking           @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  customer   Users             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  technician TechnicianProfile @relation(fields: [technicianId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 }

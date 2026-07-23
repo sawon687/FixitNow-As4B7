@@ -1,3 +1,4 @@
+import { BookingStatus, PaymentStatus } from '../../../generated/prisma/enums';
 import { prisma } from "../../lib/prisma";
 import {  IAvailability, IBookingStatus, IQuery, ITecnichianProfile } from "./tecnichian.interface";
 
@@ -73,11 +74,12 @@ if(!technicianProfile){
     throw new Error("Technician profile not found")
   }
 
-
+    
   const bookingExists = await prisma.booking.findUnique({
     where:{
       id,
       technicianId: technicianProfile.id
+     
     }
   })
 
@@ -88,7 +90,9 @@ if(!technicianProfile){
   
   const results = await prisma.booking.update({
     where:{id,technicianId:technicianProfile.id},
-    data:payload
+    data:{...payload, 
+      completedAt:payload.status===BookingStatus.COMPLETED?new Date():null,
+      cancelledAt:payload.status===BookingStatus.CANCELLED?new Date():null}
   })
 
   return results

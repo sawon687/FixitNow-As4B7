@@ -10,9 +10,9 @@ model Service {
   priceType   String
   location    String
   isActive    Boolean @default(true)
-  
-  technician TechnicianProfile @relation(fields: [technicianId], references: [id],onDelete:Cascade)
-  category   Category          @relation(fields: [categoryId], references: [id],onDelete:Cascade)
+
+  technician TechnicianProfile @relation(fields: [technicianId], references: [id], onDelete: Cascade)
+  category   Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   bookings Booking[]
 

@@ -1,17 +1,17 @@
 model TechnicianProfile {
-  id                String  @id @default(uuid()) @db.Uuid
-  userId        String  @unique @db.Uuid
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @unique @db.Uuid
   bio               String?
   yearsOfExperience Int
-  skills   String[] 
-  location String
-  avgRating    Float   @default(0)
-  technician Users @relation(fields: [userId], references: [id],onDelete:Cascade)
+  skills            String[]
+  location          String
+  avgRating         Float    @default(0)
+  technician        Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  services Service[]
-  bookings Booking[]
-  reviews  Review[]
+  services       Service[]
+  bookings       Booking[]
+  reviews        Review[]
   availabilities Availability[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
 }
