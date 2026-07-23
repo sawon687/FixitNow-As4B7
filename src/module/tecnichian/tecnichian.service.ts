@@ -40,12 +40,15 @@ class TecnichianService {
 
   
   async getAlltecnichiandb(){
-    const results=await prisma.users.findMany({
-      where:{role:'TECHNICIAN'},
+    const results=await prisma.technicianProfile.findMany({
+     
       include:{
-        technicianProfile:true
+        reviews:true,
+        bookings:true,
+        availabilities:true,
+        technician:true
       },
-      omit:{password:true}
+     
     })
     return results
   }

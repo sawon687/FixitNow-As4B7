@@ -1,7 +1,7 @@
 model Review {
   id String @id @default(uuid()) @db.Uuid
 
-  bookingId    String @unique @db.Uuid
+  bookingId    String  @db.Uuid
   userId       String @db.Uuid
   technicianId String @db.Uuid
 

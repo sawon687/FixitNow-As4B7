@@ -7,6 +7,7 @@ import { stripe } from '../../lib/stripe';
 import { ICustomer } from './payment.interface';
 
 class PaymentService {
+  // create payment 
   async paymentCreateDB(bookingId: string, user: ICustomer) {
     console.log('bookingsId',bookingId)
     const booking = await prisma.booking.findUniqueOrThrow({
@@ -15,19 +16,19 @@ class PaymentService {
       },
     });
 
-    // Only customer can make payment
+    // only customer can make payment
     if (user.role !== "CUSTOMER") {
       throw new Error("Only customers can make payment");
     }
 
-    // Payment only for accepted booking
+    // payment only for accepted booking
     if (booking.status !== "ACCEPTED") {
       throw new Error(
         "Payment is only available for accepted bookings"
       );
     }
 
-    // Create Stripe Checkout Session
+    // create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
@@ -56,7 +57,7 @@ class PaymentService {
       cancel_url: `${config.appurl}/payment?success=false`,
     });
 
-    // Create payment record
+    // create payment record
     const payment = await prisma.payment.create({
       data: {
         transactionId: session.id,
