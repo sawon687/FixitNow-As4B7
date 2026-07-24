@@ -41,6 +41,17 @@ class PaymentController extends baseController{
     data: result,
   });
     })
+
+    singlePaymentHistory=this.handle(async(req:Request , res:Response)=>{
+        const id=req.params.id as string
+        const result =await paymentService.singlePaymentHistoryDB(id)
+                    sendResponse(res, {
+    success: true,
+    status: https.OK,
+    message: "Payment found",
+    data: result,
+  });
+    })
 }
 
 export default new PaymentController()

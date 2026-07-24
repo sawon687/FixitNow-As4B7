@@ -109,6 +109,14 @@ class PaymentService {
     });
     return result;
   }
+
+  async singlePaymentHistoryDB(id:string){
+     const result =await prisma.payment.findFirstOrThrow({where:{id},include:{
+       booking:true
+     }})
+     return result
+  }
+
 }
 
 export default new PaymentService();
