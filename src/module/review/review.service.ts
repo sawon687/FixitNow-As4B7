@@ -4,29 +4,55 @@ import { IReview } from "./review.interface";
 
 class ReviewService {
   // Created Review
-  async createReviewDB(payload: IReview, role: Role) {
-    const { bookingId } = payload;
+async createReviewDB(payload: IReview, role: Role) {
+  const { bookingId } = payload;
 
-    const bookingExists = await prisma.booking.findUnique({
-      where: { id: bookingId },
-    });
-    if (!bookingExists) {
-      throw new Error("This booking does not exit");
-    }
 
-    if (bookingExists.status !== BookingStatus.COMPLETED) {
-      throw new Error("This booking does not Completed!");
-    }
+  const bookingExists = await prisma.booking.findUnique({
+    where: {
+      id: bookingId,
+    },
+  });
 
-    const reviewPaylod = {
+  if (!bookingExists) {
+    throw new Error("This booking does not exist");
+  }
+
+ 
+  if (bookingExists.status !== BookingStatus.COMPLETED) {
+    throw new Error("This booking is not completed!");
+  }
+
+
+  const result = await prisma.review.create({
+    data: {
       ...payload,
       technicianId: bookingExists.technicianId,
-    };
+    },
+  });
 
-    const result = await prisma.review.create({ data: reviewPaylod });
 
-    return result;
-  }
+  const ratingResult = await prisma.review.aggregate({
+    where: {
+      technicianId: bookingExists.technicianId,
+    },
+    _avg: {
+      rating: true,
+    },
+  });
+
+ 
+  await prisma.technicianProfile.update({
+    where: {
+      id: bookingExists.technicianId,
+    },
+    data: {
+      avgRating: Number(ratingResult._avg.rating?.toFixed(1)) ?? 0,
+    },
+  });
+
+  return result;
+}
 }
 
 export default new ReviewService();

@@ -2,9 +2,9 @@ model Availability {
   id           String @id @default(uuid()) @db.Uuid
   technicianId String @db.Uuid
 
-  date      DateTime
+ date      DateTime
   startTime String
-  endTime   String
+  endTime   String 
 
   isAvailable Boolean @default(true)
   isBooked    Boolean @default(false)

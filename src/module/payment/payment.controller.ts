@@ -4,6 +4,7 @@ import { ICustomer } from './payment.interface';
 import https from "http-status"
 import { baseController } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
+import { prisma } from '../../lib/prisma';
 class PaymentController extends baseController{
     paymentCreate=this.handle(async(req:Request,res:Response)=>{
               const {bookingId}=req.body
@@ -26,6 +27,17 @@ class PaymentController extends baseController{
     success: true,
     status: https.OK,
     message: "Payment confirmed successfully",
+    data: result,
+  });
+    })
+
+    userPaymentGet=this.handle(async(req:Request,res:Response)=>{
+            const id=req.user?.id as string
+            const result=await paymentService.userPaymentGetDB(id)
+             sendResponse(res, {
+    success: true,
+    status: https.OK,
+    message: "Payment found",
     data: result,
   });
     })

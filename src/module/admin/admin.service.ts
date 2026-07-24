@@ -1,3 +1,4 @@
+import { UserStatus } from '../../../generated/prisma/enums';
 import { prisma } from '../../lib/prisma';
 import { ICategory } from './admin.interface';
 
@@ -17,6 +18,13 @@ class AdminService{
     }
     async getAllBookingsdb(){
         const result=await prisma.booking.findMany()
+        return result
+    }
+    async updateUserStatusDB(status: UserStatus, id: string){
+        const result = await prisma.users.update({
+            where: { id },
+            data:{ status}
+        })
         return result
     }
 }

@@ -17,7 +17,8 @@ class ServiceController extends baseController{
 
 
     getService=this.handle(async(req:Request,res:Response)=>{
-           const service=await serviceService.getServicedb()
+          const query=req.query
+           const service=await serviceService.getAllServices(query)
            sendResponse(res,{message:'get all service successfully',status:status.OK,success:true,data:service})
     })
 }

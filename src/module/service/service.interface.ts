@@ -7,3 +7,9 @@ export interface IService {
     priceType: string
     location: string
 }
+
+export interface IServiceQuery {
+  type?: string;
+  location?: string;
+  rating?: string;
+}

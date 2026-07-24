@@ -27,6 +27,15 @@ class AdminCotroller extends baseController{
 
           sendResponse(res,{message:'Get all bookings',status:status.OK,success:true,data:booking})
     })
+
+    userStatusUpdate=this.handle(async(req:Request,res:Response)=>{
+            const {status}=req.body;
+            const id=req.params.id;
+            const result=await adminService.updateUserStatusDB(status,id as string)
+
+            sendResponse(res,{message:'update Status Successfully',status:status.OK,success:true,data:result})
+
+    })
 }
 
 export default new AdminCotroller()

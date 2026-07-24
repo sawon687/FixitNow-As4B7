@@ -100,6 +100,15 @@ class PaymentService {
   return payment;
 
   }
+
+  async userPaymentGetDB(id: string){
+     
+    const result = await prisma.payment.findMany({
+      where: { customerId: id },
+      orderBy:{createdAt:'desc'}
+    });
+    return result;
+  }
 }
 
 export default new PaymentService();

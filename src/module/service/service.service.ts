@@ -1,5 +1,6 @@
+import { Service } from '../../../generated/prisma/client';
 import { prisma } from '../../lib/prisma';
-import { IService } from './service.interface';
+import { IService, IServiceQuery } from './service.interface';
 
 
 class ServicesService {
@@ -28,10 +29,55 @@ class ServicesService {
     return results;
   }
 
-  async getServicedb(){
-    const results=await prisma.service.findMany()
-    return results
-  }
+async getAllServices(query:IServiceQuery) {
+  const { type, location,  rating } = query;
+
+  const results = await prisma.service.findMany({
+    where: {
+      isActive: true,
+
+   
+      ...(type && {
+        category: {
+          name: {
+            contains: type,
+            mode: "insensitive",
+          },
+        },
+      }),
+
+  
+      ...(location && {
+          technician:{
+             location: {
+          contains: location,
+          mode: "insensitive",
+        },
+          }
+      }),
+
+      
+      ...(rating && {
+        technician: {
+          avgRating: Number(rating),
+        
+        },
+      }),
+    },
+
+    include: {
+      category: true,
+
+      technician: {
+        include: {
+          technician: true,
+        },
+      },
+    },
+  });
+
+  return results;
+}
 }
 
 export default  new ServicesService()
