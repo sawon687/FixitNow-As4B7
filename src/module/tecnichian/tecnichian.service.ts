@@ -1,3 +1,4 @@
+import { TechnicianProfile } from '../../../generated/prisma/client';
 import { BookingStatus, PaymentStatus } from '../../../generated/prisma/enums';
 import { prisma } from "../../lib/prisma";
 import {  IAvailability, IBookingStatus, IQuery, ITecnichianProfile } from "./tecnichian.interface";
@@ -39,20 +40,46 @@ class TecnichianService {
   }
 
   
-  async getAlltecnichiandb(){
-    const results=await prisma.technicianProfile.findMany({
-     
-      include:{
-        reviews:true,
-        bookings:true,
-        availabilities:true,
-        technician:true
-      },
-     
-    })
-    return results
-  }
- 
+async getAlltecnichiandb(query: any) {
+  const {
+    location,
+    skills,
+    yearsOfExperience,
+  } = query;
+
+  const results = await prisma.technicianProfile.findMany({
+    where: {
+      ...(location && {
+        location: {
+          contains: location,
+          mode: "insensitive",
+        },
+      }),
+
+      ...(skills && {
+        skills: {
+          has: skills,
+        },
+      }),
+
+   
+
+      ...(yearsOfExperience && {
+        yearsOfExperience:  Number(yearsOfExperience),
+    
+      }),
+    },
+
+    include: {
+      reviews: true,
+      bookings: true,
+      availabilities: true,
+      technician: true,
+    },
+  });
+
+  return results;
+}
 
   async createAvabilitydb(payload:IAvailability,userId:string){
     console.log('abalibilty',payload)

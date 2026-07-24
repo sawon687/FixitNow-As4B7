@@ -4,6 +4,7 @@ import { IQuery, ITecnichianProfile } from "./tecnichian.interface";
 import tecnichianService from "./tecnichian.service";
 import { sendResponse } from "../../utils/sendResponse";
 import status from "http-status";
+import { TechnicianProfile } from '../../../generated/prisma/client';
 
 class TecnichianController extends baseController {
   tecnProfile = this.handle(async (req: Request, res: Response) => {
@@ -21,7 +22,9 @@ class TecnichianController extends baseController {
   });
 
   getAlltecnishian = this.handle(async (req: Request, res: Response) => {
-    const tecnichian = await tecnichianService.getAlltecnichiandb();
+    const query=req.query 
+    const tecnichian = await tecnichianService.getAlltecnichiandb(query);
+     
     sendResponse(res, {
       message: "get all tecnishian found",
       success: true,
