@@ -27,7 +27,7 @@ app.get('/',(req:Request,res:Response)=>{
 
 app.use('/api/auth',authRouter)
 app.use('/api/technician',technicianRouter)
-app.use('/api/services',serviceRouter)
+app.use('/api',serviceRouter)
 app.use('/api/admin',adminroutes)
 app.use('/api/bookings',bookingsrouter)
 app.use('/api/payments',paymentrouter)

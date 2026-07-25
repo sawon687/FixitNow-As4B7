@@ -1,9 +1,10 @@
 import { Router } from 'express';
 
 import { auth } from '../../midieware/auth';
-import { Role } from '../../../generated/prisma/enums';
 import reviewController from './review.controller';
+import validationReq from '../../midieware/validationReq';
+import { reviewValidation } from './review.validation';
 
 const router=Router()
-router.post('/',auth('CUSTOMER'),reviewController.reviewCreate)
+router.post('/',validationReq(reviewValidation.createReviewValidationSchema),auth('CUSTOMER'),reviewController.reviewCreate)
 export const reviewRouter=router

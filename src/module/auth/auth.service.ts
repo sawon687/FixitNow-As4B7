@@ -1,7 +1,6 @@
 
 import config from '../../config/config';
 import { prisma } from '../../lib/prisma';
-
 import bcrypt from 'bcryptjs';
 import { IAuth, ILogin } from './auth.interface';
 import { jwtUtils } from '../../utils/jwt';

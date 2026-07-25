@@ -4,12 +4,20 @@ import { sendResponse } from '../../utils/sendResponse';
 import { IAuth } from './auth.interface';
 import authService from './auth.service';
 import status from "http-status";
+import { createUserValidationSchema } from './auth.validation';
+
+
 
 
 class AuthController extends baseController{
 createUser=this.handle(async(req:Request,res:Response)=>{
           const payload=req.body as IAuth
-             const user=await authService.createdb(payload )
+          //  const data=createUserValidationSchema.parse(payload)
+          //  const userPayload = {
+          //    ...data,
+          //    role: data.role ?? 'CUSTOMER',
+          //  }
+             const user=await authService.createdb(payload)
        sendResponse(res,{success:true,message:'user created successfully', status:status.CREATED,data:user})
      })
 
