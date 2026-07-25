@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
+    "rootDir": "./src",
     "outDir": "./dist",
-    "module": "ESNext",
+    "module": "esnext",
     "moduleResolution": "bundler",
-    "target": "ES2023",
+    "target": "esnext",
     "types": ["node"],
     "sourceMap": true,
     "declaration": true,
@@ -14,7 +14,8 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "exactOptionalPropertyTypes": true,
   },
   "include": [
     "src/**/*",
