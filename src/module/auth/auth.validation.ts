@@ -38,13 +38,14 @@ const userLoginValidationSchema = z.object({
           });
         }
       }),
-  }),
-
-     role: z
-      .enum(["CUSTOMER", "TECHNICIAN", "ADMIN"], {
-        message: "Role must be CUSTOMER, TECHNICIAN or ADMIN",
+       role: z
+      .enum(["CUSTOMER", "TECHNICIAN"], {
+        message: "Role must be CUSTOMER, TECHNICIAN",
       })
       .optional(),
+  }),
+
+    
 });
 
 export const authValidation = {

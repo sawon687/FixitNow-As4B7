@@ -11,6 +11,7 @@ class AuthService {
          {
         const { email, password ,name,role} = payload
         console.log('payload',payload)
+        
         const userexits = await prisma.users.findUnique({ where: { email } })
         if (userexits) {
             throw new Error('This email Allready exits')

@@ -31,11 +31,6 @@ const createServiceValidationSchema = z.object({
       .trim()
       .min(1, "Price type is required"),
 
-    location: z
-      .string()
-      .trim()
-      .min(1, "Location is required")
-      .max(200, "Location must not exceed 200 characters"),
   }),
 });
 

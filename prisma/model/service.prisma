@@ -8,7 +8,6 @@ model Service {
   description String
   price       Float
   priceType   String
-  location    String
   isActive    Boolean @default(true)
 
   technician TechnicianProfile @relation(fields: [technicianId], references: [id], onDelete: Cascade)

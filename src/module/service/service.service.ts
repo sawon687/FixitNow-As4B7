@@ -47,14 +47,14 @@ async getAllServices(query:IServiceQuery) {
       }),
 
   
-      ...(location && {
-          technician:{
-             location: {
-          contains: location,
-          mode: "insensitive",
-        },
-          }
-      }),
+    ...(location && {
+  technician: {
+    location: {
+      contains: location,
+      mode: "insensitive",
+    },
+  },
+}),
 
       
       ...(rating && {
@@ -67,12 +67,8 @@ async getAllServices(query:IServiceQuery) {
 
     include: {
       category: true,
-
-      technician: {
-        include: {
-          technician: true,
-        },
-      },
+ technician: true,
+    
     },
   });
 
