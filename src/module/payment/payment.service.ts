@@ -101,15 +101,22 @@ class PaymentService {
 
   }
 
-  async userPaymentGetDB(id: string){
-     
-    const result = await prisma.payment.findMany({
-      where: { customerId: id },
-      orderBy:{createdAt:'desc'}
-    });
-    return result;
+ async userPaymentGetDB(id: string) {
+  if (!id) {
+    throw new Error("Please login to view payment history");
   }
 
+  const result = await prisma.payment.findMany({
+    where: {
+      customerId: id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return result;
+}
   async singlePaymentHistoryDB(id:string){
      const result =await prisma.payment.findFirstOrThrow({where:{id},include:{
        booking:true
