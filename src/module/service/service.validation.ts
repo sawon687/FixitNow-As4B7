@@ -2,9 +2,7 @@ import { z } from "zod";
 
 const createServiceValidationSchema = z.object({
   body: z.object({
-    categoryId: z
-      .string()
-      .uuid("Category ID must be a valid UUID"),
+    categoryId: z.string().uuid("Category ID must be a valid UUID"),
 
     title: z
       .string()
@@ -25,12 +23,8 @@ const createServiceValidationSchema = z.object({
         message: "Price must be a number",
       })
       .positive("Price must be greater than 0"),
-
-    priceType: z
-      .string()
-      .trim()
-      .min(1, "Price type is required"),
-
+    //  price type
+    priceType: z.string().trim().min(1, "Price type is required"),
   }),
 });
 
