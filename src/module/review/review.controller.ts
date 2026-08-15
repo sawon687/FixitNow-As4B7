@@ -19,6 +19,7 @@ class ReviewController extends baseController {
     const { id: userId, role } = user;
     const body = req.body;
     const payload = { ...body, userId };
+     console.log('contoller',payload)
     const result = await reviewService.createReviewDB(payload, role);
 
     sendResponse(res, {

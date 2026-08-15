@@ -9,7 +9,9 @@ export interface IService {
 }
 
 export interface IServiceQuery {
-  type?: string;
+  category?: string;
   location?: string;
   rating?: string;
+  price?:string,
+  search?:string
 }

@@ -1,7 +1,7 @@
 import { TechnicianProfile } from '../../../generated/prisma/client';
 import { BookingStatus, PaymentStatus } from '../../../generated/prisma/enums';
 import { prisma } from "../../lib/prisma";
-import {  IAvailability, IBookingStatus, IQuery, ITecnichianProfile } from "./tecnichian.interface";
+import {  IAvailability, IAvailabilityUpdateStatus, IBookingStatus, IQuery, ITecnichianProfile } from "./tecnichian.interface";
 
 class TecnichianService {
   async profiledb(payload: ITecnichianProfile) {
@@ -139,8 +139,20 @@ if(!technicianProfile){
       return results
    }
 
+     async getMyServicedb(userId:string){
+    const  technicianProfile=await prisma.technicianProfile.findUnique({where:{userId}})
+  
+    if(!technicianProfile)
+    {
+       throw new Error('This tecnishian not found pleace create  tecnishian')
+    }
+   
+      const results=await prisma.service.findMany({where:{technicianId:technicianProfile.id}})
+      return results
+   }
+
   async getAvabilityDB(userId:string,query:IQuery){
-   const date = query?.date;
+  
      const technichianProfile=await prisma.technicianProfile.findUnique({where:{userId}})
      if(!technichianProfile){
        throw new Error('Technician profile not found')
@@ -148,20 +160,40 @@ if(!technicianProfile){
 
      const { id } = technichianProfile;
    
-     const results = await prisma.availability.findMany({ where: { technicianId: id, ...(date && {date:new Date(date) }) } })
+     const results = await prisma.availability.findMany({
+       where: {
+         technicianId: id,
+        },
+     });
      return results
    }
 
-   async updateAvabiltilyDB(payload:IAvailability,userId:string){
+    async getAvableSlotDB(date:string){
+     const results = await prisma.availability.findMany({
+       where: {
+          date
+          
+        },
+        
+             select: {
+           id: true,
+           startTime: true,
+           endTime: true
+        }
+     });
+     return results
+   }
+
+   async updateAvabiltilyDB(payload:IAvailabilityUpdateStatus,userId:string){
       const technichianProfile=await prisma.technicianProfile.findUnique({where:{userId}})
      if(!technichianProfile){
        throw new Error('Technician profile not found')
      }
      console.log('payload avalibilty',payload)
-    const {id,isAvailable,isBooked}=payload
+    const {id,status}=payload
     
 
-      const result=await prisma.availability.update({where:{id}, data:{isAvailable,isBooked}})
+      const result=await prisma.availability.update({where:{id}, data:{status}})
       return result
    }
 }

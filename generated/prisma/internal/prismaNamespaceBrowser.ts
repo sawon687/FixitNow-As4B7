@@ -98,8 +98,7 @@ export const AvailabilityScalarFieldEnum = {
   date: 'date',
   startTime: 'startTime',
   endTime: 'endTime',
-  isAvailable: 'isAvailable',
-  isBooked: 'isBooked',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -115,6 +114,7 @@ export const BookingScalarFieldEnum = {
   scheduledDate: 'scheduledDate',
   address: 'address',
   status: 'status',
+  startTime: 'startTime',
   totalAmount: 'totalAmount',
   cancelledAt: 'cancelledAt',
   completedAt: 'completedAt',
@@ -166,6 +166,7 @@ export const ServiceScalarFieldEnum = {
   id: 'id',
   technicianId: 'technicianId',
   categoryId: 'categoryId',
+  userId: 'userId',
   title: 'title',
   description: 'description',
   price: 'price',

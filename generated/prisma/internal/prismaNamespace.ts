@@ -1063,8 +1063,7 @@ export const AvailabilityScalarFieldEnum = {
   date: 'date',
   startTime: 'startTime',
   endTime: 'endTime',
-  isAvailable: 'isAvailable',
-  isBooked: 'isBooked',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1080,6 +1079,7 @@ export const BookingScalarFieldEnum = {
   scheduledDate: 'scheduledDate',
   address: 'address',
   status: 'status',
+  startTime: 'startTime',
   totalAmount: 'totalAmount',
   cancelledAt: 'cancelledAt',
   completedAt: 'completedAt',
@@ -1131,6 +1131,7 @@ export const ServiceScalarFieldEnum = {
   id: 'id',
   technicianId: 'technicianId',
   categoryId: 'categoryId',
+  userId: 'userId',
   title: 'title',
   description: 'description',
   price: 'price',
@@ -1243,9 +1244,16 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Boolean'
+ * Reference to a field of type 'AvailabilityStatus'
  */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+export type EnumAvailabilityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AvailabilityStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AvailabilityStatus[]'
+ */
+export type ListEnumAvailabilityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AvailabilityStatus[]'>
     
 
 
@@ -1274,6 +1282,13 @@ export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'PaymentStatus[]'
  */
 export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

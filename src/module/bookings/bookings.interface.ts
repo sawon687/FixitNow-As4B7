@@ -7,4 +7,5 @@ export interface ICreateBookingDTO {
   scheduledDate: string;   // ISO date string, frontend থেকে string আসবে
   address: string;
   totalAmount: number;
+  startTime:string
 }

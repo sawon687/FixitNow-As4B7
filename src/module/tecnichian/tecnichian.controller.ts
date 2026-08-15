@@ -92,11 +92,21 @@ class TecnichianController extends baseController {
     sendResponse(res, {
       success: true,
       message: "availability is found",
-      status: status.CREATED,
+      status: status.OK,
       data: availabililty,
     });
   });
-
+  getAvailabieSlot = this.handle(async (req: Request, res: Response) => {
+   const {date}=req.params
+console.log('id date',date)
+    const availabililty = await tecnichianService.getAvableSlotDB(date as string);
+    sendResponse(res, {
+      success: true,
+      message: "availability is found",
+      status: status.OK,
+      data: availabililty,
+    });
+  });
   updateAvailability = this.handle(async (req: Request, res: Response) => {
     const payload = req.body;
     const userId = req.user?.id as string;
@@ -113,6 +123,23 @@ class TecnichianController extends baseController {
       data: updateAvailability,
     });
   });
+
+   getMyService = this.handle(
+    async (req: Request, res: Response) => {
+      console.log("users", req.user);
+      const userId = req.user?.id as string;
+      console.log("userId ", userId);
+      const bookings =
+        await tecnichianService.getMyServicedb(userId);
+      sendResponse(res, {
+        success: true,
+        message: "all  Service tecnichian get  is successfully",
+        status: status.OK,
+        data: bookings,
+      });
+    },
+  );
+  
 }
 
 export default new TecnichianController();

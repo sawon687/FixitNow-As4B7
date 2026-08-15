@@ -7,8 +7,10 @@ import { serviceValidation } from './service.validation';
 
 const router=Router()
 
-router.post('/services',validationReq(serviceValidation.createServiceValidationSchema), auth("TECHNICIAN"),serviceController.createService)
+router.post('/services',validationReq(serviceValidation.createServiceValidationSchema),
+ auth("TECHNICIAN"),serviceController.createService)
 router.get('/services',serviceController.getService)
 router.get('/categories',adminController.getAllCategory)
+router.get('/services/:id',serviceController.getsingleServices)
 
 export const serviceRouter=router

@@ -3,6 +3,7 @@ model Service {
 
   technicianId String @db.Uuid
   categoryId   String @db.Uuid
+  userId       String @db.Uuid
 
   title       String
   description String
@@ -12,8 +13,10 @@ model Service {
 
   technician TechnicianProfile @relation(fields: [technicianId], references: [id], onDelete: Cascade)
   category   Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  bookings    Booking[]
 
-  bookings Booking[]
-
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
 }
+
+

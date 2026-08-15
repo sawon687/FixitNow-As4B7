@@ -12,7 +12,14 @@ const createBookingValidationSchema = z.object({
 
     scheduledDate: z
       .string()
-      .datetime("Scheduled date must be a valid ISO date"),
+      .date("Scheduled date must be a valid date"),
+
+    startTime: z
+      .string()
+      .regex(
+        /^([01]\d|2[0-3]):([0-5]\d)$/,
+        "Start time must be in HH:mm format"
+      ),
 
     address: z
       .string()
@@ -24,8 +31,8 @@ const createBookingValidationSchema = z.object({
     totalAmount: z
       .number({
         error: "Total amount must be a number",
-      
-      }).min(1, "totalAmount is required") 
+      })
+      .min(1, "totalAmount is required")
       .positive("Total amount must be greater than 0"),
   }),
 });

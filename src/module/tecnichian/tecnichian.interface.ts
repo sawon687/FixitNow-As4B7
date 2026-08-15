@@ -1,4 +1,4 @@
-import { BookingStatus } from '../../../generated/prisma/enums'
+import { AvailabilityStatus, BookingStatus } from '../../../generated/prisma/enums'
 
 export interface ITecnichianProfile {
      userId:string
@@ -23,8 +23,7 @@ export interface IQuery {
      date?:Date
 }
 
-export interface IAvailability{
+export interface IAvailabilityUpdateStatus{
       id:string
-      isAvailable: boolean,
-      isBooked:boolean,
+      status:AvailabilityStatus
 }

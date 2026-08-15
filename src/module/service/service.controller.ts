@@ -21,6 +21,12 @@ class ServiceController extends baseController{
            const service=await serviceService.getAllServices(query)
            sendResponse(res,{message:'get all service successfully',status:status.OK,success:true,data:service})
     })
+
+      getsingleServices=this.handle(async(req:Request,res:Response)=>{
+        const id=req.params?.id as string
+      const service=await serviceService.getsingleServicedb(id)
+          sendResponse(res,{success:true,message:'Service get is successfully', status:status.CREATED , data:service})
+    })
 }
 
 

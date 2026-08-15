@@ -71,7 +71,8 @@ class AuthService {
         name,
         role
      },
-     omit:{password:true}
+     omit:{password:true},
+     include:{technicianProfile:true}
     })
      return result
    }

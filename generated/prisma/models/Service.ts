@@ -38,6 +38,7 @@ export type ServiceMinAggregateOutputType = {
   id: string | null
   technicianId: string | null
   categoryId: string | null
+  userId: string | null
   title: string | null
   description: string | null
   price: number | null
@@ -50,6 +51,7 @@ export type ServiceMaxAggregateOutputType = {
   id: string | null
   technicianId: string | null
   categoryId: string | null
+  userId: string | null
   title: string | null
   description: string | null
   price: number | null
@@ -62,6 +64,7 @@ export type ServiceCountAggregateOutputType = {
   id: number
   technicianId: number
   categoryId: number
+  userId: number
   title: number
   description: number
   price: number
@@ -84,6 +87,7 @@ export type ServiceMinAggregateInputType = {
   id?: true
   technicianId?: true
   categoryId?: true
+  userId?: true
   title?: true
   description?: true
   price?: true
@@ -96,6 +100,7 @@ export type ServiceMaxAggregateInputType = {
   id?: true
   technicianId?: true
   categoryId?: true
+  userId?: true
   title?: true
   description?: true
   price?: true
@@ -108,6 +113,7 @@ export type ServiceCountAggregateInputType = {
   id?: true
   technicianId?: true
   categoryId?: true
+  userId?: true
   title?: true
   description?: true
   price?: true
@@ -207,6 +213,7 @@ export type ServiceGroupByOutputType = {
   id: string
   technicianId: string
   categoryId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -242,6 +249,7 @@ export type ServiceWhereInput = {
   id?: Prisma.UuidFilter<"Service"> | string
   technicianId?: Prisma.UuidFilter<"Service"> | string
   categoryId?: Prisma.UuidFilter<"Service"> | string
+  userId?: Prisma.UuidFilter<"Service"> | string
   title?: Prisma.StringFilter<"Service"> | string
   description?: Prisma.StringFilter<"Service"> | string
   price?: Prisma.FloatFilter<"Service"> | number
@@ -257,6 +265,7 @@ export type ServiceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   technicianId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -275,6 +284,7 @@ export type ServiceWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ServiceWhereInput | Prisma.ServiceWhereInput[]
   technicianId?: Prisma.UuidFilter<"Service"> | string
   categoryId?: Prisma.UuidFilter<"Service"> | string
+  userId?: Prisma.UuidFilter<"Service"> | string
   title?: Prisma.StringFilter<"Service"> | string
   description?: Prisma.StringFilter<"Service"> | string
   price?: Prisma.FloatFilter<"Service"> | number
@@ -290,6 +300,7 @@ export type ServiceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   technicianId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -310,6 +321,7 @@ export type ServiceScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Service"> | string
   technicianId?: Prisma.UuidWithAggregatesFilter<"Service"> | string
   categoryId?: Prisma.UuidWithAggregatesFilter<"Service"> | string
+  userId?: Prisma.UuidWithAggregatesFilter<"Service"> | string
   title?: Prisma.StringWithAggregatesFilter<"Service"> | string
   description?: Prisma.StringWithAggregatesFilter<"Service"> | string
   price?: Prisma.FloatWithAggregatesFilter<"Service"> | number
@@ -320,6 +332,7 @@ export type ServiceScalarWhereWithAggregatesInput = {
 
 export type ServiceCreateInput = {
   id?: string
+  userId: string
   title: string
   description: string
   price: number
@@ -335,6 +348,7 @@ export type ServiceUncheckedCreateInput = {
   id?: string
   technicianId: string
   categoryId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -346,6 +360,7 @@ export type ServiceUncheckedCreateInput = {
 
 export type ServiceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -361,6 +376,7 @@ export type ServiceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -374,6 +390,7 @@ export type ServiceCreateManyInput = {
   id?: string
   technicianId: string
   categoryId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -384,6 +401,7 @@ export type ServiceCreateManyInput = {
 
 export type ServiceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -396,6 +414,7 @@ export type ServiceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -423,6 +442,7 @@ export type ServiceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   technicianId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -439,6 +459,7 @@ export type ServiceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   technicianId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -451,6 +472,7 @@ export type ServiceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   technicianId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -561,8 +583,13 @@ export type ServiceUncheckedUpdateManyWithoutCategoryNestedInput = {
   deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type ServiceCreateWithoutTechnicianInput = {
   id?: string
+  userId: string
   title: string
   description: string
   price: number
@@ -576,6 +603,7 @@ export type ServiceCreateWithoutTechnicianInput = {
 export type ServiceUncheckedCreateWithoutTechnicianInput = {
   id?: string
   categoryId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -618,6 +646,7 @@ export type ServiceScalarWhereInput = {
   id?: Prisma.UuidFilter<"Service"> | string
   technicianId?: Prisma.UuidFilter<"Service"> | string
   categoryId?: Prisma.UuidFilter<"Service"> | string
+  userId?: Prisma.UuidFilter<"Service"> | string
   title?: Prisma.StringFilter<"Service"> | string
   description?: Prisma.StringFilter<"Service"> | string
   price?: Prisma.FloatFilter<"Service"> | number
@@ -628,6 +657,7 @@ export type ServiceScalarWhereInput = {
 
 export type ServiceCreateWithoutBookingsInput = {
   id?: string
+  userId: string
   title: string
   description: string
   price: number
@@ -642,6 +672,7 @@ export type ServiceUncheckedCreateWithoutBookingsInput = {
   id?: string
   technicianId: string
   categoryId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -668,6 +699,7 @@ export type ServiceUpdateToOneWithWhereWithoutBookingsInput = {
 
 export type ServiceUpdateWithoutBookingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -682,6 +714,7 @@ export type ServiceUncheckedUpdateWithoutBookingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -692,6 +725,7 @@ export type ServiceUncheckedUpdateWithoutBookingsInput = {
 
 export type ServiceCreateWithoutCategoryInput = {
   id?: string
+  userId: string
   title: string
   description: string
   price: number
@@ -705,6 +739,7 @@ export type ServiceCreateWithoutCategoryInput = {
 export type ServiceUncheckedCreateWithoutCategoryInput = {
   id?: string
   technicianId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -743,6 +778,7 @@ export type ServiceUpdateManyWithWhereWithoutCategoryInput = {
 export type ServiceCreateManyTechnicianInput = {
   id?: string
   categoryId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -753,6 +789,7 @@ export type ServiceCreateManyTechnicianInput = {
 
 export type ServiceUpdateWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -766,6 +803,7 @@ export type ServiceUpdateWithoutTechnicianInput = {
 export type ServiceUncheckedUpdateWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -778,6 +816,7 @@ export type ServiceUncheckedUpdateWithoutTechnicianInput = {
 export type ServiceUncheckedUpdateManyWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -789,6 +828,7 @@ export type ServiceUncheckedUpdateManyWithoutTechnicianInput = {
 export type ServiceCreateManyCategoryInput = {
   id?: string
   technicianId: string
+  userId: string
   title: string
   description: string
   price: number
@@ -799,6 +839,7 @@ export type ServiceCreateManyCategoryInput = {
 
 export type ServiceUpdateWithoutCategoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -812,6 +853,7 @@ export type ServiceUpdateWithoutCategoryInput = {
 export type ServiceUncheckedUpdateWithoutCategoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -824,6 +866,7 @@ export type ServiceUncheckedUpdateWithoutCategoryInput = {
 export type ServiceUncheckedUpdateManyWithoutCategoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -867,6 +910,7 @@ export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   technicianId?: boolean
   categoryId?: boolean
+  userId?: boolean
   title?: boolean
   description?: boolean
   price?: boolean
@@ -883,6 +927,7 @@ export type ServiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   technicianId?: boolean
   categoryId?: boolean
+  userId?: boolean
   title?: boolean
   description?: boolean
   price?: boolean
@@ -897,6 +942,7 @@ export type ServiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   technicianId?: boolean
   categoryId?: boolean
+  userId?: boolean
   title?: boolean
   description?: boolean
   price?: boolean
@@ -911,6 +957,7 @@ export type ServiceSelectScalar = {
   id?: boolean
   technicianId?: boolean
   categoryId?: boolean
+  userId?: boolean
   title?: boolean
   description?: boolean
   price?: boolean
@@ -919,7 +966,7 @@ export type ServiceSelectScalar = {
   createdAt?: boolean
 }
 
-export type ServiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "technicianId" | "categoryId" | "title" | "description" | "price" | "priceType" | "isActive" | "createdAt", ExtArgs["result"]["service"]>
+export type ServiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "technicianId" | "categoryId" | "userId" | "title" | "description" | "price" | "priceType" | "isActive" | "createdAt", ExtArgs["result"]["service"]>
 export type ServiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
@@ -946,6 +993,7 @@ export type $ServicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     technicianId: string
     categoryId: string
+    userId: string
     title: string
     description: string
     price: number
@@ -1381,6 +1429,7 @@ export interface ServiceFieldRefs {
   readonly id: Prisma.FieldRef<"Service", 'String'>
   readonly technicianId: Prisma.FieldRef<"Service", 'String'>
   readonly categoryId: Prisma.FieldRef<"Service", 'String'>
+  readonly userId: Prisma.FieldRef<"Service", 'String'>
   readonly title: Prisma.FieldRef<"Service", 'String'>
   readonly description: Prisma.FieldRef<"Service", 'String'>
   readonly price: Prisma.FieldRef<"Service", 'Float'>

@@ -4,7 +4,6 @@ model Review {
   bookingId    String  @db.Uuid
   userId       String @db.Uuid
   technicianId String @db.Uuid
-
   rating  Float
   comment String?
 

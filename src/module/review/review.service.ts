@@ -5,9 +5,9 @@ import { IReview } from "./review.interface";
 class ReviewService {
   // Created Review
 async createReviewDB(payload: IReview, role: Role) {
-  const { bookingId } = payload;
+  const { bookingId,technicianId,comment,userId,rating } = payload;
 
-
+console.log('review',payload)
   const bookingExists = await prisma.booking.findUnique({
     where: {
       id: bookingId,
@@ -24,12 +24,15 @@ async createReviewDB(payload: IReview, role: Role) {
   }
 
 
-  const result = await prisma.review.create({
-    data: {
-      ...payload,
-      technicianId: bookingExists.technicianId,
-    },
-  });
+const result = await prisma.review.create({
+  data: {
+    rating,
+    comment,
+    bookingId,
+    userId,
+    technicianId:technicianId || bookingExists.technicianId
+  }
+});
 
 
   const ratingResult = await prisma.review.aggregate({

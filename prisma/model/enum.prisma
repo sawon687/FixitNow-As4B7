@@ -21,3 +21,9 @@ enum PaymentStatus {
   PAID
   CANCELLED
 }
+
+enum AvailabilityStatus {
+  Available
+   Booked
+   Blocked
+}

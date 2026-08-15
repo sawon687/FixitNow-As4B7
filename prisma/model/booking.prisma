@@ -5,10 +5,10 @@ model Booking {
   technicianId String @db.Uuid
   serviceId    String @db.Uuid
 
-  scheduledDate DateTime
+  scheduledDate String
   address       String
   status        BookingStatus @default(REQUESTED)
-
+  startTime String
   totalAmount Float
 
   cancelledAt DateTime?

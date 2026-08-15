@@ -11,4 +11,5 @@ model Users {
   updatedAt         DateTime           @updatedAt
   technicianProfile TechnicianProfile?
   payment           Payment[]
+
 }

@@ -6,8 +6,9 @@ import { bookingValidation } from './bookings.validation';
 
 const router=Router()
 
-router.post('/',validationReq(bookingValidation.createBookingValidationSchema),auth('CUSTOMER'),bookingsController.createBookings)
-router.get('/',bookingsController.getAllBookings)
+router.post('/',validationReq(bookingValidation.createBookingValidationSchema),
+auth('CUSTOMER'),bookingsController.createBookings)
+router.get('/',bookingsController.getMyBookings)
 router.get('/:id',bookingsController.getsingleBookings)
 
 export const bookingsrouter=router

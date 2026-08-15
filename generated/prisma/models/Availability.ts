@@ -27,11 +27,10 @@ export type AggregateAvailability = {
 export type AvailabilityMinAggregateOutputType = {
   id: string | null
   technicianId: string | null
-  date: Date | null
+  date: string | null
   startTime: string | null
   endTime: string | null
-  isAvailable: boolean | null
-  isBooked: boolean | null
+  status: $Enums.AvailabilityStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -39,11 +38,10 @@ export type AvailabilityMinAggregateOutputType = {
 export type AvailabilityMaxAggregateOutputType = {
   id: string | null
   technicianId: string | null
-  date: Date | null
+  date: string | null
   startTime: string | null
   endTime: string | null
-  isAvailable: boolean | null
-  isBooked: boolean | null
+  status: $Enums.AvailabilityStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,8 +52,7 @@ export type AvailabilityCountAggregateOutputType = {
   date: number
   startTime: number
   endTime: number
-  isAvailable: number
-  isBooked: number
+  status: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -68,8 +65,7 @@ export type AvailabilityMinAggregateInputType = {
   date?: true
   startTime?: true
   endTime?: true
-  isAvailable?: true
-  isBooked?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -80,8 +76,7 @@ export type AvailabilityMaxAggregateInputType = {
   date?: true
   startTime?: true
   endTime?: true
-  isAvailable?: true
-  isBooked?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -92,8 +87,7 @@ export type AvailabilityCountAggregateInputType = {
   date?: true
   startTime?: true
   endTime?: true
-  isAvailable?: true
-  isBooked?: true
+  status?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -174,11 +168,10 @@ export type AvailabilityGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type AvailabilityGroupByOutputType = {
   id: string
   technicianId: string
-  date: Date
+  date: string
   startTime: string
   endTime: string
-  isAvailable: boolean
-  isBooked: boolean
+  status: $Enums.AvailabilityStatus
   createdAt: Date
   updatedAt: Date
   _count: AvailabilityCountAggregateOutputType | null
@@ -207,11 +200,10 @@ export type AvailabilityWhereInput = {
   NOT?: Prisma.AvailabilityWhereInput | Prisma.AvailabilityWhereInput[]
   id?: Prisma.UuidFilter<"Availability"> | string
   technicianId?: Prisma.UuidFilter<"Availability"> | string
-  date?: Prisma.DateTimeFilter<"Availability"> | Date | string
+  date?: Prisma.StringFilter<"Availability"> | string
   startTime?: Prisma.StringFilter<"Availability"> | string
   endTime?: Prisma.StringFilter<"Availability"> | string
-  isAvailable?: Prisma.BoolFilter<"Availability"> | boolean
-  isBooked?: Prisma.BoolFilter<"Availability"> | boolean
+  status?: Prisma.EnumAvailabilityStatusFilter<"Availability"> | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFilter<"Availability"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Availability"> | Date | string
   technician?: Prisma.XOR<Prisma.TechnicianProfileScalarRelationFilter, Prisma.TechnicianProfileWhereInput>
@@ -223,8 +215,7 @@ export type AvailabilityOrderByWithRelationInput = {
   date?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
-  isBooked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   technician?: Prisma.TechnicianProfileOrderByWithRelationInput
@@ -236,11 +227,10 @@ export type AvailabilityWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AvailabilityWhereInput[]
   NOT?: Prisma.AvailabilityWhereInput | Prisma.AvailabilityWhereInput[]
   technicianId?: Prisma.UuidFilter<"Availability"> | string
-  date?: Prisma.DateTimeFilter<"Availability"> | Date | string
+  date?: Prisma.StringFilter<"Availability"> | string
   startTime?: Prisma.StringFilter<"Availability"> | string
   endTime?: Prisma.StringFilter<"Availability"> | string
-  isAvailable?: Prisma.BoolFilter<"Availability"> | boolean
-  isBooked?: Prisma.BoolFilter<"Availability"> | boolean
+  status?: Prisma.EnumAvailabilityStatusFilter<"Availability"> | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFilter<"Availability"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Availability"> | Date | string
   technician?: Prisma.XOR<Prisma.TechnicianProfileScalarRelationFilter, Prisma.TechnicianProfileWhereInput>
@@ -252,8 +242,7 @@ export type AvailabilityOrderByWithAggregationInput = {
   date?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
-  isBooked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AvailabilityCountOrderByAggregateInput
@@ -267,22 +256,20 @@ export type AvailabilityScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AvailabilityScalarWhereWithAggregatesInput | Prisma.AvailabilityScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Availability"> | string
   technicianId?: Prisma.UuidWithAggregatesFilter<"Availability"> | string
-  date?: Prisma.DateTimeWithAggregatesFilter<"Availability"> | Date | string
+  date?: Prisma.StringWithAggregatesFilter<"Availability"> | string
   startTime?: Prisma.StringWithAggregatesFilter<"Availability"> | string
   endTime?: Prisma.StringWithAggregatesFilter<"Availability"> | string
-  isAvailable?: Prisma.BoolWithAggregatesFilter<"Availability"> | boolean
-  isBooked?: Prisma.BoolWithAggregatesFilter<"Availability"> | boolean
+  status?: Prisma.EnumAvailabilityStatusWithAggregatesFilter<"Availability"> | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Availability"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Availability"> | Date | string
 }
 
 export type AvailabilityCreateInput = {
   id?: string
-  date: Date | string
+  date: string
   startTime: string
   endTime: string
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: $Enums.AvailabilityStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   technician: Prisma.TechnicianProfileCreateNestedOneWithoutAvailabilitiesInput
@@ -291,22 +278,20 @@ export type AvailabilityCreateInput = {
 export type AvailabilityUncheckedCreateInput = {
   id?: string
   technicianId: string
-  date: Date | string
+  date: string
   startTime: string
   endTime: string
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: $Enums.AvailabilityStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type AvailabilityUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBooked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAvailabilityStatusFieldUpdateOperationsInput | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   technician?: Prisma.TechnicianProfileUpdateOneRequiredWithoutAvailabilitiesNestedInput
@@ -315,11 +300,10 @@ export type AvailabilityUpdateInput = {
 export type AvailabilityUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBooked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAvailabilityStatusFieldUpdateOperationsInput | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -327,22 +311,20 @@ export type AvailabilityUncheckedUpdateInput = {
 export type AvailabilityCreateManyInput = {
   id?: string
   technicianId: string
-  date: Date | string
+  date: string
   startTime: string
   endTime: string
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: $Enums.AvailabilityStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type AvailabilityUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBooked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAvailabilityStatusFieldUpdateOperationsInput | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -350,11 +332,10 @@ export type AvailabilityUpdateManyMutationInput = {
 export type AvailabilityUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   technicianId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBooked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAvailabilityStatusFieldUpdateOperationsInput | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -375,8 +356,7 @@ export type AvailabilityCountOrderByAggregateInput = {
   date?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
-  isBooked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -387,8 +367,7 @@ export type AvailabilityMaxOrderByAggregateInput = {
   date?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
-  isBooked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -399,8 +378,7 @@ export type AvailabilityMinOrderByAggregateInput = {
   date?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
-  isBooked?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -447,28 +425,26 @@ export type AvailabilityUncheckedUpdateManyWithoutTechnicianNestedInput = {
   deleteMany?: Prisma.AvailabilityScalarWhereInput | Prisma.AvailabilityScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
+export type EnumAvailabilityStatusFieldUpdateOperationsInput = {
+  set?: $Enums.AvailabilityStatus
 }
 
 export type AvailabilityCreateWithoutTechnicianInput = {
   id?: string
-  date: Date | string
+  date: string
   startTime: string
   endTime: string
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: $Enums.AvailabilityStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type AvailabilityUncheckedCreateWithoutTechnicianInput = {
   id?: string
-  date: Date | string
+  date: string
   startTime: string
   endTime: string
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: $Enums.AvailabilityStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -505,55 +481,50 @@ export type AvailabilityScalarWhereInput = {
   NOT?: Prisma.AvailabilityScalarWhereInput | Prisma.AvailabilityScalarWhereInput[]
   id?: Prisma.UuidFilter<"Availability"> | string
   technicianId?: Prisma.UuidFilter<"Availability"> | string
-  date?: Prisma.DateTimeFilter<"Availability"> | Date | string
+  date?: Prisma.StringFilter<"Availability"> | string
   startTime?: Prisma.StringFilter<"Availability"> | string
   endTime?: Prisma.StringFilter<"Availability"> | string
-  isAvailable?: Prisma.BoolFilter<"Availability"> | boolean
-  isBooked?: Prisma.BoolFilter<"Availability"> | boolean
+  status?: Prisma.EnumAvailabilityStatusFilter<"Availability"> | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFilter<"Availability"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Availability"> | Date | string
 }
 
 export type AvailabilityCreateManyTechnicianInput = {
   id?: string
-  date: Date | string
+  date: string
   startTime: string
   endTime: string
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: $Enums.AvailabilityStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type AvailabilityUpdateWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBooked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAvailabilityStatusFieldUpdateOperationsInput | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AvailabilityUncheckedUpdateWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBooked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAvailabilityStatusFieldUpdateOperationsInput | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AvailabilityUncheckedUpdateManyWithoutTechnicianInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.StringFieldUpdateOperationsInput | string
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBooked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumAvailabilityStatusFieldUpdateOperationsInput | $Enums.AvailabilityStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -566,8 +537,7 @@ export type AvailabilitySelect<ExtArgs extends runtime.Types.Extensions.Internal
   date?: boolean
   startTime?: boolean
   endTime?: boolean
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
@@ -579,8 +549,7 @@ export type AvailabilitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   date?: boolean
   startTime?: boolean
   endTime?: boolean
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
@@ -592,8 +561,7 @@ export type AvailabilitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   date?: boolean
   startTime?: boolean
   endTime?: boolean
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
@@ -605,13 +573,12 @@ export type AvailabilitySelectScalar = {
   date?: boolean
   startTime?: boolean
   endTime?: boolean
-  isAvailable?: boolean
-  isBooked?: boolean
+  status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AvailabilityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "technicianId" | "date" | "startTime" | "endTime" | "isAvailable" | "isBooked" | "createdAt" | "updatedAt", ExtArgs["result"]["availability"]>
+export type AvailabilityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "technicianId" | "date" | "startTime" | "endTime" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["availability"]>
 export type AvailabilityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   technician?: boolean | Prisma.TechnicianProfileDefaultArgs<ExtArgs>
 }
@@ -630,11 +597,10 @@ export type $AvailabilityPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     technicianId: string
-    date: Date
+    date: string
     startTime: string
     endTime: string
-    isAvailable: boolean
-    isBooked: boolean
+    status: $Enums.AvailabilityStatus
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["availability"]>
@@ -1063,11 +1029,10 @@ export interface Prisma__AvailabilityClient<T, Null = never, ExtArgs extends run
 export interface AvailabilityFieldRefs {
   readonly id: Prisma.FieldRef<"Availability", 'String'>
   readonly technicianId: Prisma.FieldRef<"Availability", 'String'>
-  readonly date: Prisma.FieldRef<"Availability", 'DateTime'>
+  readonly date: Prisma.FieldRef<"Availability", 'String'>
   readonly startTime: Prisma.FieldRef<"Availability", 'String'>
   readonly endTime: Prisma.FieldRef<"Availability", 'String'>
-  readonly isAvailable: Prisma.FieldRef<"Availability", 'Boolean'>
-  readonly isBooked: Prisma.FieldRef<"Availability", 'Boolean'>
+  readonly status: Prisma.FieldRef<"Availability", 'AvailabilityStatus'>
   readonly createdAt: Prisma.FieldRef<"Availability", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Availability", 'DateTime'>
 }

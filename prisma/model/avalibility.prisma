@@ -2,15 +2,15 @@ model Availability {
   id           String @id @default(uuid()) @db.Uuid
   technicianId String @db.Uuid
 
- date      DateTime
+  date      String
   startTime String
   endTime   String 
 
-  isAvailable Boolean @default(true)
-  isBooked    Boolean @default(false)
+  status    AvailabilityStatus @default(Available) // "available", "booked", অথবা "blocked"
 
-  technician TechnicianProfile @relation(fields: [technicianId], references: [id])
+  technician TechnicianProfile @relation(fields: [technicianId], references: [id], onDelete: Cascade )
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
