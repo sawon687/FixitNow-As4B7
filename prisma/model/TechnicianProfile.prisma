@@ -6,7 +6,7 @@ model TechnicianProfile {
   skills            String[]
   location          String
  avgRating Float @default(0) 
-  technician        Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  users       Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   services       Service[]
   bookings       Booking[]

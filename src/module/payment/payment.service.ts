@@ -52,39 +52,67 @@ class PaymentService {
         customerId: user.id,
       },
 
-      success_url: `${config.appurl}/payment?success=true`,
+      success_url: `${config.appurl}/payment/success?sessionId={CHECKOUT_SESSION_ID}`,
 
-      cancel_url: `${config.appurl}/payment?success=false`,
+      cancel_url: `${config.appurl}/payment/cancel?sessionId={CHECKOUT_SESSION_ID}`,
     });
 
     // create payment record
-    const payment = await prisma.payment.create({
-      data: {
-        transactionId: session.id,
-        bookingId: booking.id,
-        customerId: user.id,
-        amount: booking.totalAmount,
-        status: "PENDING",
-      },
-    });
+  const payment = await prisma.payment.upsert({
+  where: {
+    bookingId: booking.id,
+  },
+
+  update: {
+    transactionId: session.id,
+    status: "PENDING",
+  },
+
+  create: {
+    transactionId: session.id,
+    bookingId: booking.id,
+    customerId: user.id,
+    amount: booking.totalAmount,
+    status: "PENDING",
+  },
+}); 
 
     return {
-      payment,
+     
       sessionId: session.id,
       paymentUrl: session.url,
     };
   }
 
   async confrimpaymentDB(sessionId:string){
-       
+       console.log('session',sessionId)
   const session = await stripe.checkout.sessions.retrieve(sessionId);
 
   if (!session) {
     throw new Error("Checkout session not found");
   }
 
+  const exitingPayment=await prisma.payment.findUnique({
+    where:{transactionId:session.id}
+  })
+
+
   if (session.payment_status !== "paid") {
-    throw new Error("Payment not completed");
+      if(exitingPayment?.status===PaymentStatus.CANCELLED)
+      {
+           return exitingPayment
+      } 
+        const payment = await prisma.payment.update({
+           where: {
+      transactionId: session.id,
+          },
+           data: {
+      status: PaymentStatus.CANCELLED ,
+      paidAt:new Date()
+        },
+          });
+      return payment
+   
   }
 
   const payment = await prisma.payment.update({

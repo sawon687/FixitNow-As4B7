@@ -1,3 +1,4 @@
+
 import {
   BookingStatus,
   BookingWhereInput,
@@ -36,23 +37,36 @@ class BookingsService {
     if (status && status !== "ALL") {
       whereCondition.status = { equals: status as BookingStatus };
     }
-    console.log('conditon',whereCondition)
+    console.log("conditon", whereCondition);
     const results = await prisma.booking.findMany({
       where: whereCondition,
       include: { review: true, payment: true },
     });
-    console.log('bookns',results)
+    console.log("bookns", results);
     return results;
   }
 
   async getsingleBokingsdb(id: string) {
-    const results = await prisma.booking.findUniqueOrThrow({ where: { id },
-       include:{
-         payment:true,
-         technician:true,
-         review:true
-       }
-       });
+    const results = await prisma.booking.findUniqueOrThrow({
+      where: { id },
+      include: {
+        payment: true,
+        
+        technician: {
+           
+          include: {
+            users: {
+              
+              select: {
+                name:true,
+                email:true
+              },
+            },
+          },
+        },
+        review: true,
+      },
+    });
     return results;
   }
 }

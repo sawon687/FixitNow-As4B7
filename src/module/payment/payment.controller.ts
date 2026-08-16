@@ -5,6 +5,7 @@ import https from "http-status"
 import { baseController } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
 import { prisma } from '../../lib/prisma';
+import { PaymentStatus } from '../../../generated/prisma/enums';
 class PaymentController extends baseController{
     paymentCreate=this.handle(async(req:Request,res:Response)=>{
               const {bookingId}=req.body
@@ -26,7 +27,7 @@ class PaymentController extends baseController{
             sendResponse(res, {
     success: true,
     status: https.OK,
-    message: "Payment confirmed successfully",
+    message: result?.status===PaymentStatus.PAID? "Payment confirmed successfully":'Payment Cancel successfully',
     data: result,
   });
     })

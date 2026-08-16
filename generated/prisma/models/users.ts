@@ -284,7 +284,7 @@ export type UsersCreateInput = {
   updatedAt?: Date | string
   bookings?: Prisma.BookingCreateNestedManyWithoutCustomerInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUsersInput
   payment?: Prisma.PaymentCreateNestedManyWithoutCustomerInput
 }
 
@@ -299,7 +299,7 @@ export type UsersUncheckedCreateInput = {
   updatedAt?: Date | string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUsersInput
   payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutCustomerInput
 }
 
@@ -314,7 +314,7 @@ export type UsersUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUsersNestedInput
   payment?: Prisma.PaymentUpdateManyWithoutCustomerNestedInput
 }
 
@@ -329,7 +329,7 @@ export type UsersUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUsersNestedInput
   payment?: Prisma.PaymentUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
@@ -550,7 +550,7 @@ export type UsersCreateWithoutBookingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   reviews?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUsersInput
   payment?: Prisma.PaymentCreateNestedManyWithoutCustomerInput
 }
 
@@ -564,7 +564,7 @@ export type UsersUncheckedCreateWithoutBookingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUsersInput
   payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutCustomerInput
 }
 
@@ -594,7 +594,7 @@ export type UsersUpdateWithoutBookingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reviews?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUsersNestedInput
   payment?: Prisma.PaymentUpdateManyWithoutCustomerNestedInput
 }
 
@@ -608,7 +608,7 @@ export type UsersUncheckedUpdateWithoutBookingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUsersNestedInput
   payment?: Prisma.PaymentUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
@@ -623,7 +623,7 @@ export type UsersCreateWithoutPaymentInput = {
   updatedAt?: Date | string
   bookings?: Prisma.BookingCreateNestedManyWithoutCustomerInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUsersInput
 }
 
 export type UsersUncheckedCreateWithoutPaymentInput = {
@@ -637,7 +637,7 @@ export type UsersUncheckedCreateWithoutPaymentInput = {
   updatedAt?: Date | string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUsersInput
 }
 
 export type UsersCreateOrConnectWithoutPaymentInput = {
@@ -667,7 +667,7 @@ export type UsersUpdateWithoutPaymentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUsersNestedInput
 }
 
 export type UsersUncheckedUpdateWithoutPaymentInput = {
@@ -681,7 +681,7 @@ export type UsersUncheckedUpdateWithoutPaymentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUsersNestedInput
 }
 
 export type UsersCreateWithoutReviewsInput = {
@@ -694,7 +694,7 @@ export type UsersCreateWithoutReviewsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   bookings?: Prisma.BookingCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUsersInput
   payment?: Prisma.PaymentCreateNestedManyWithoutCustomerInput
 }
 
@@ -708,7 +708,7 @@ export type UsersUncheckedCreateWithoutReviewsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutTechnicianInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUsersInput
   payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutCustomerInput
 }
 
@@ -738,7 +738,7 @@ export type UsersUpdateWithoutReviewsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUsersNestedInput
   payment?: Prisma.PaymentUpdateManyWithoutCustomerNestedInput
 }
 
@@ -752,7 +752,7 @@ export type UsersUncheckedUpdateWithoutReviewsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
-  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutTechnicianNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUsersNestedInput
   payment?: Prisma.PaymentUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
