@@ -129,7 +129,9 @@ export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  createdAt: 'createdAt'
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -142,6 +144,7 @@ export const PaymentScalarFieldEnum = {
   customerId: 'customerId',
   amount: 'amount',
   status: 'status',
+  method: 'method',
   paidAt: 'paidAt',
   createdAt: 'createdAt'
 } as const

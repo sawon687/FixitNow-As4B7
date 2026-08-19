@@ -1,8 +1,10 @@
 enum BookingStatus {
   REQUESTED
   ACCEPTED
+  DECLINED
   COMPLETED
   CANCELLED
+  IN_PROGRESS
 }
 
 enum Role {

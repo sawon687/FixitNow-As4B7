@@ -34,7 +34,7 @@ class BookingsService {
   async getMyBokingsdb(userId: string, status: string) {
     const whereCondition: BookingWhereInput = { userId };
 
-    if (status && status !== "ALL") {
+    if (status &&  status!=="undefined" && status!=="ALL") {
       whereCondition.status = { equals: status as BookingStatus };
     }
     console.log("conditon", whereCondition);

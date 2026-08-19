@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { BookingStatus } from '../../../generated/prisma/enums';
 
 const technicianProfileValidationSchema = z.object({
   body: z.object({
@@ -40,7 +41,7 @@ const technicianProfileValidationSchema = z.object({
 const updateBookingStatusValidationSchema = z.object({
   body: z.object({
     status: z.enum(
-      ["REQUESTED", "ACCEPTED", "COMPLETED", "CANCELLED"],
+      BookingStatus,
       {
         message:
           "Status must be REQUESTED,   ACCEPTED, COMPLETED or CANCELLED",

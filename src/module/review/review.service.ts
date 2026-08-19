@@ -56,6 +56,14 @@ const result = await prisma.review.create({
 
   return result;
 }
+
+
+async getMyReviewDB(id:string) {
+ 
+const result = await prisma.review.findMany({where:{userId:id}})
+
+  return result;
+}
 }
 
 export default new ReviewService();

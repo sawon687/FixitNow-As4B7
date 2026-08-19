@@ -10,14 +10,14 @@ class AuthService {
    async createdb(payload:IAuth){
          {
         const { email, password ,name,role} = payload
-        console.log('payload',payload)
+     
         
         const userexits = await prisma.users.findUnique({ where: { email } })
         if (userexits) {
             throw new Error('This email Allready exits')
         }
         const hashedPassword = await bcrypt.hash(password, Number(config.bycriptHashRound))
-        console.log(hashedPassword)
+      
         const user = await prisma.users.create({ data:{
             email,
             password: hashedPassword,
@@ -25,12 +25,9 @@ class AuthService {
             role
         },
     omit:{password:true}})
-        console.log('user',user)
+       
         return user
-
     }
-        
-
     }
 
     async logindb(payload:ILogin){
@@ -55,11 +52,11 @@ class AuthService {
             role:userExits.role
             
         }
-         console.log('refrsshsecrtret',config.refreshSecret)
+        
         const accessToken=jwtUtils.createToken(jwtpayload,config.accessSecret,{expiresIn:config.jwt_refresh_Expires}as SignOptions)
         const refreshToken=jwtUtils.createToken(jwtpayload,config.refreshSecret,{expiresIn:config.jwt_refresh_Expires} as SignOptions)
 
-            console.log({accessToken,refreshToken})
+          
         return {accessToken,refreshToken}
     }
 

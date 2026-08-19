@@ -9,11 +9,21 @@
 * 🟢 You can import this file directly.
 */
 
+export const CategoryStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type CategoryStatus = (typeof CategoryStatus)[keyof typeof CategoryStatus]
+
+
 export const BookingStatus = {
   REQUESTED: 'REQUESTED',
   ACCEPTED: 'ACCEPTED',
+  DECLINED: 'DECLINED',
   COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
+  CANCELLED: 'CANCELLED',
+  IN_PROGRESS: 'IN_PROGRESS'
 } as const
 
 export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]

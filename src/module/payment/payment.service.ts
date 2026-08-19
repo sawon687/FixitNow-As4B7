@@ -1,5 +1,6 @@
 
 
+import { promise } from 'zod';
 import { PaymentStatus } from '../../../generated/prisma/enums';
 import config from '../../config/config';
 import { prisma } from '../../lib/prisma';
@@ -73,7 +74,8 @@ class PaymentService {
     bookingId: booking.id,
     customerId: user.id,
     amount: booking.totalAmount,
-    status: "PENDING",
+    method:"Strip",
+    status: "PENDING"
   },
 }); 
 
@@ -134,16 +136,50 @@ class PaymentService {
     throw new Error("Please login to view payment history");
   }
 
-  const result = await prisma.payment.findMany({
+  const userPaymentDetails = prisma.payment.findMany({
     where: {
       customerId: id,
+    },
+    include: {
+      booking: {
+       select:{
+        service:{
+          select:{
+            title:true
+          }
+        }
+       }
+      },
     },
     orderBy: {
       createdAt: "desc",
     },
   });
 
-  return result;
+  const totalPaidUser = prisma.payment.count({
+    where: { customerId: id, status: PaymentStatus.PAID },
+  });
+
+  const totalPendingUser = prisma.payment.count({
+    where: { customerId: id, status: PaymentStatus.PENDING },
+  });
+  const totalPayment=prisma.payment.aggregate({where:{customerId:id,},_sum:{
+         amount:true
+  }})
+
+  const [paidCount, pendingCount, payments,totalPaid] = await Promise.all([
+    totalPaidUser,
+    totalPendingUser,
+    userPaymentDetails,
+    totalPayment
+  ]);
+
+  return {
+    paidCount,
+    pendingCount,
+    payments,
+    totalPaid:totalPaid._sum.amount
+  };
 }
   async singlePaymentHistoryDB(id:string){
      const result =await prisma.payment.findFirstOrThrow({where:{id},include:{

@@ -29,6 +29,19 @@ class ReviewController extends baseController {
       data: result,
     });
   });
+
+  getMyreview = this.handle(async (req: Request, res: Response) => {
+    const id= req.user?.id as string
+
+
+    const result = await reviewService.getMyReviewDB(id)
+    sendResponse(res, {
+      success: true,
+      status: status.OK,
+      message: "Review found successfully",
+      data: result,
+    });
+  });
 }
 
 export default new ReviewController();

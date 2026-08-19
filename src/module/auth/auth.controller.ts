@@ -4,8 +4,6 @@ import { sendResponse } from '../../utils/sendResponse';
 import { IAuth } from './auth.interface';
 import authService from './auth.service';
 import status from "http-status";
-import { createUserValidationSchema } from './auth.validation';
-
 
 
 
