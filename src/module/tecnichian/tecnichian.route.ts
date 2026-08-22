@@ -9,7 +9,12 @@ import { technicianValidation } from './tecnichian.validation';
 const router=Router()
 
 
-router.put('/profile',validationReq(technicianValidation.technicianProfileValidationSchema),auth('TECHNICIAN'),tecnichianController.tecnProfile)
+router.post('/profile',
+    validationReq(technicianValidation.technicianProfileValidationSchema),
+    auth('TECHNICIAN'),tecnichianController.tecnProfile)
+    router.patch('/profile-update',
+    validationReq(technicianValidation.technicianProfileValidationSchema),
+    auth('TECHNICIAN'),tecnichianController.updatetechnicianProfile)
 router.get('/',tecnichianController.getAlltecnishian)
 router.post('/availability',auth('TECHNICIAN'),tecnichianController.createAvalibility)
 router.get('/availability',auth('TECHNICIAN'),tecnichianController.getAvailability)
@@ -20,4 +25,5 @@ router.patch('/bookings/:id',
     auth('TECHNICIAN'),tecnichianController.updateBookingsStatus)
 router.get('/bookings',auth('TECHNICIAN'),tecnichianController.getAllBookingsTecnichian)
 router.get('/my-service',auth('TECHNICIAN'),tecnichianController.getMyService)
+router.get('/dashboard',auth('TECHNICIAN'),tecnichianController.gettecnishianDashboard)
 export const technicianRouter=router

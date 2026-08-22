@@ -21,9 +21,35 @@ class TecnichianController extends baseController {
     });
   });
 
+    updatetechnicianProfile = this.handle(async (req: Request, res: Response) => {
+    const payload = req.body as ITecnichianProfile;
+    const id = req.user?.id as string;
+    const profilepayload = { ...payload, userId: id };
+    console.log("profile technichian", profilepayload);
+    const user = await tecnichianService.updateprofiledb(profilepayload);
+    sendResponse(res, {
+      success: true,
+      message: "Profile Update successfully",
+      status: status.CREATED,
+      data: user,
+    });
+  });
+
   getAlltecnishian = this.handle(async (req: Request, res: Response) => {
     const query=req.query 
     const tecnichian = await tecnichianService.getAlltecnichiandb(query);
+     
+    sendResponse(res, {
+      message: "get all tecnishian found",
+      success: true,
+      status: status.OK,
+      data: tecnichian,
+    });
+  });
+
+   gettecnishianDashboard = this.handle(async (req: Request, res: Response) => {
+    const userId=req?.user?.id as string
+    const tecnichian = await tecnichianService.gettecnichianDashboarddb(userId);
      
     sendResponse(res, {
       message: "get all tecnishian found",

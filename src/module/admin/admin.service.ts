@@ -137,101 +137,167 @@ async getAllCategorydb(search: string) {
     return { users, totalUserCount, pageNumber, limit };
   }
 
-  async getAdminDashboarddb(){
- const now = new Date();
+  async getAdminDashboarddb() {
+  const now = new Date();
 
-const startOfMonth = new Date(
-  now.getFullYear(),
-  now.getMonth(),
-  1
-);
+  // Current month
+  const startOfMonth = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    1
+  );
 
-const startOfNextMonth = new Date(
-  now.getFullYear(),
-  now.getMonth() + 1,
-  1
-);
+  const startOfNextMonth = new Date(
+    now.getFullYear(),
+    now.getMonth() + 1,
+    1
+  );
 
-const [totalUser,registerUser,totaltechnician,runingMonthBooking ,activeBookingCount,bookingAll, revenueResult] = await Promise.all([
-       prisma.users.count(),
-      prisma.users.count({where:{
-           role:Role.CUSTOMER
-      }}),
-      prisma.technicianProfile.count(),
-    prisma.booking.count({
-  where: {
-    createdAt: {
-      gte: startOfMonth,
-      lt: startOfNextMonth,
-    },
-  },
-}),
-      prisma.booking.count({
+  const currentYear = now.getFullYear();
+
+  // Dashboard data
+  const [
+    totalUser,
+    registerUser,
+    totaltechnician,
+    runingMonthBooking,
+    activeBookingCount,
+    bookingAll,
+    revenueResult,
+  ] = await Promise.all([
+    // Total users
+    prisma.users.count(),
+
+    // Total customers
+    prisma.users.count({
       where: {
-      status: {
-        in: [
-          BookingStatus.REQUESTED,
-          BookingStatus.ACCEPTED,
-          BookingStatus.IN_PROGRESS,
-        ],
+        role: Role.CUSTOMER,
       },
-    },
-  }),
+    }),
 
-  prisma.booking.findMany({where:{
-    status:{
-      in:[
-         BookingStatus.REQUESTED,
-          BookingStatus.ACCEPTED,
-          BookingStatus.IN_PROGRESS,
-      ]
-    },
- },
- include:{
-   customer:{
-    select:{
-      name:true
-    }
-   },
-   service:{
-     include:{
-      category:{
-        select:{
-          name:true
-        }
-      }
-     }
-   }
- },
-  orderBy: {
-    createdAt: "desc",
-  }
-}),
+    // Total technicians
+    prisma.technicianProfile.count(),
 
-  prisma.payment.aggregate({
-    where: {
-      status: PaymentStatus.PAID,
-    },
-    _sum: {
-      amount: true,
-    },
-  }),
-]);
+    // Current month bookings
+    prisma.booking.count({
+      where: {
+        createdAt: {
+          gte: startOfMonth,
+          lt: startOfNextMonth,
+        },
+      },
+    }),
 
-const revenue = revenueResult._sum.amount ?? 0;
+    // Active bookings
+    prisma.booking.count({
+      where: {
+        status: {
+          in: [
+            BookingStatus.REQUESTED,
+            BookingStatus.ACCEPTED,
+            BookingStatus.IN_PROGRESS,
+          ],
+        },
+      },
+    }),
 
-return{
-  totalUser,
-  activeBookingCount,
-  revenue,
-   bookingAll,
-   registerUser,
-   totaltechnician,
-   runingMonthBooking
+    // Active booking list
+    prisma.booking.findMany({
+      where: {
+        status: {
+          in: [
+            BookingStatus.REQUESTED,
+            BookingStatus.ACCEPTED,
+            BookingStatus.IN_PROGRESS,
+          ],
+        },
+      },
+      include: {
+        customer: {
+          select: {
+            name: true,
+          },
+        },
+        service: {
+          include: {
+            category: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    }),
+
+    // Total revenue
+    prisma.payment.aggregate({
+      where: {
+        status: PaymentStatus.PAID,
+      },
+      _sum: {
+        amount: true,
+      },
+    }),
+  ]);
+
+  // Total revenue
+  const revenue = revenueResult._sum.amount ?? 0;
+
+
+  // Monthly Revenue
+
+
+  const revenueData = await Promise.all(
+    Array.from({ length: 12 }, async (_, i) => {
+      const monthStart = new Date(
+        currentYear,
+        i,
+        1
+      );
+
+      const monthEnd = new Date(
+        currentYear,
+        i + 1,
+        1
+      );
+
+      const result = await prisma.payment.aggregate({
+        where: {
+          status: PaymentStatus.PAID,
+          paidAt: {
+            gte: monthStart,
+            lt: monthEnd,
+          },
+        },
+        _sum: {
+          amount: true,
+        },
+      });
+
+      return {
+        month: monthStart.toLocaleString("en-US", {
+          month: "short",
+        }),
+        revenue: result._sum.amount ?? 0,
+      };
+    })
+  );
+
+  return {
+    totalUser,
+    activeBookingCount,
+    revenue,
+    bookingAll,
+    registerUser,
+    totaltechnician,
+    runingMonthBooking,
+    revenueData,
+  };
 }
-
-  }
-
 
   async getAllBookingsdb() {
     const result = await prisma.booking.findMany();

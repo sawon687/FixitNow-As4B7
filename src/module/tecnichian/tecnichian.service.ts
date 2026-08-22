@@ -1,5 +1,5 @@
 import { TechnicianProfile } from '../../../generated/prisma/client';
-import { BookingStatus, PaymentStatus } from '../../../generated/prisma/enums';
+import { AvailabilityStatus, BookingStatus, PaymentStatus } from '../../../generated/prisma/enums';
 import { prisma } from "../../lib/prisma";
 import {  IAvailability, IAvailabilityUpdateStatus, IBookingStatus, IQuery, ITecnichianProfile } from "./tecnichian.interface";
 
@@ -8,13 +8,13 @@ class TecnichianService {
     const { userId, bio, skills, location, yearsOfExperience } = payload;
 
     const profileExits = await prisma.technicianProfile.findUnique({
-      where: { id: userId },
+      where: { userId },
     });
     if (profileExits) {
       throw new Error("This id profile allready exits");
     }
 
-    const profile = await prisma.technicianProfile.create({
+    const result = await prisma.technicianProfile.create({
       data: {
         userId,
         bio,
@@ -24,23 +24,39 @@ class TecnichianService {
       },
     });
 
-    if (profile) {
-      const userProfile = await prisma.users.findUnique({
-        where: {
-          id: userId,
-        },
-        include: {
-          technicianProfile: true,
-        },
-        omit:{password:true},
-      });
+ 
 
-      return userProfile;
+      return result;
     }
-  }
-
   
-async getAlltecnichiandb(query: any) {
+
+
+    async updateprofiledb(payload: ITecnichianProfile) {
+    const { userId, bio, skills, location, yearsOfExperience} = payload;
+
+    const profileExits = await prisma.technicianProfile.findUnique({
+      where: {userId },
+    });
+    if (!profileExits) {
+      throw new Error("This  profile not exits");
+    }
+
+    const result = await prisma.technicianProfile.update({where:{id:profileExits.id},
+      data: {
+        userId,
+        bio,
+        skills,
+        location,
+        yearsOfExperience,
+      },
+    });
+
+   
+
+      return result;
+    }
+
+  async getAlltecnichiandb(query: any) {
   const {
     location,
     skills,
@@ -79,6 +95,113 @@ async getAlltecnichiandb(query: any) {
   });
 
   return results;
+}
+
+
+async gettecnichianDashboarddb(userId:string) {
+const technichianexits=await prisma.technicianProfile.findUnique({where:{userId}})
+if(!technichianexits)
+{
+   throw new Error ('Tecnishan not Found!Pleace create your tecnishian account')
+}
+
+ const now = new Date();
+
+
+
+  const currentYear = now.getFullYear();
+  const [totalRevunue,reqBookingCount,completeBooking,avalibileBookingCount,booking]=await Promise.all([
+        prisma.payment.aggregate({where:{
+          status:PaymentStatus.PAID, 
+          booking:{
+            technicianId:technichianexits.id
+          }
+        },
+         _sum:{
+           amount:true
+         }
+        
+      }),
+      prisma.booking.count({where:{technicianId:technichianexits.id,status:BookingStatus.REQUESTED}}),
+      prisma.booking.count({where:{technicianId:technichianexits.id,status:BookingStatus.COMPLETED}}),
+      prisma.availability.count({where:{technicianId:technichianexits.id,status:AvailabilityStatus.Available}}),
+      prisma.booking.findMany({where:{
+        technicianId:technichianexits?.id,
+
+      },
+      include:{
+        customer:{
+          select:{
+            name:true
+          }
+        },
+        service:{
+          include:{
+            category:{
+              select:{
+                 name:true
+              }
+            }
+          }
+        }
+      },
+      orderBy:{
+        createdAt:"desc"
+      }
+    })
+
+  
+  ])
+
+  
+  const revenueData = await Promise.all(
+    Array.from({ length: 12 }, async (_, i) => {
+      const monthStart = new Date(
+        currentYear,
+        i,
+        1
+      );
+
+      const monthEnd = new Date(
+        currentYear,
+        i + 1,
+        1
+      );
+
+      const result = await prisma.payment.aggregate({
+        where: {
+          status: PaymentStatus.PAID,
+          booking:{
+            technicianId:technichianexits?.id
+          },
+          paidAt: {
+            gte: monthStart,
+            lt: monthEnd,
+          },
+        },
+        _sum: {
+          amount: true,
+        },
+      });
+
+      return {
+        month: monthStart.toLocaleString("en-US", {
+          month: "short",
+        }),
+        revenue: result._sum.amount ?? 0,
+      };
+    })
+  );
+  
+  return{
+  revenueData,
+  totalRevunue,
+  reqBookingCount,
+  completeBooking,
+  booking,
+  avalibileBookingCount
+  }
+
 }
 
   async createAvabilitydb(payload:IAvailability,userId:string){

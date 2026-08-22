@@ -3,8 +3,9 @@ import { baseController } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
 import { IAuth } from '../auth/auth.interface';
 import serviceService from './service.service';
-import { IService } from './service.interface';
+import { IService, IServiceQuery } from './service.interface';
 import status from "http-status";
+import { IQuery } from '../tecnichian/tecnichian.interface';
 class ServiceController extends baseController{
    createService=this.handle(async(req:Request,res:Response)=>{
          const payload=req.body as IService
@@ -17,7 +18,7 @@ class ServiceController extends baseController{
 
 
     getService=this.handle(async(req:Request,res:Response)=>{
-          const query=req.query
+          const query=req?.query as unknown as IServiceQuery
            const service=await serviceService.getAllServices(query)
            sendResponse(res,{message:'get all service successfully',status:status.OK,success:true,data:service})
     })

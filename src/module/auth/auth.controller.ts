@@ -17,7 +17,7 @@ createUser=this.handle(async(req:Request,res:Response)=>{
 
      loginUser=this.handle(async(req:Request,res:Response)=>{
           const payload=req.body as IAuth
-             const { accessToken, refreshToken} = await authService.logindb(payload)
+             const { accessToken, refreshToken,role} = await authService.logindb(payload)
 
             res.cookie('accessToken',accessToken,{
             httpOnly:true,
@@ -32,7 +32,7 @@ createUser=this.handle(async(req:Request,res:Response)=>{
             maxAge:1000 * 60 * 60 * 24 * 7// 24 hour or 7 day
         })
         
-       sendResponse(res,{success:true,message:'user logged in successfully', status:status.CREATED,data:{accessToken,refreshToken}})
+       sendResponse(res,{success:true,message:'user logged in successfully', status:status.CREATED,data:{accessToken,refreshToken,role}})
 })
   meget=this.handle(async(req:Request,res:Response)=>{
         const payload=req.user

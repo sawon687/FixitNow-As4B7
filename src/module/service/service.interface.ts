@@ -13,5 +13,6 @@ export interface IServiceQuery {
   location?: string;
   rating?: string;
   price?:string,
-  search?:string
+  search?:string,
+  page:string
 }

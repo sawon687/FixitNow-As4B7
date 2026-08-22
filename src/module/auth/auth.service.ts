@@ -33,12 +33,17 @@ class AuthService {
     async logindb(payload:ILogin){
            const{email,password}=payload
         const userExits=await prisma.users.findUnique({where:{email}})
+        if(userExits?.status==='BAN')
+        {
+             throw new Error("This user is Ban ! pleace try again")
+        }
         if(!userExits)
         {
             throw new Error('This email is not found')
         }
 
-        const passwordMatch=bcrypt.compare(password,userExits.password)
+        const passwordMatch=await bcrypt.compare(password,userExits.password)
+        console.log('password',passwordMatch)
 
         if(!passwordMatch)
         {
@@ -57,7 +62,7 @@ class AuthService {
         const refreshToken=jwtUtils.createToken(jwtpayload,config.refreshSecret,{expiresIn:config.jwt_refresh_Expires} as SignOptions)
 
           
-        return {accessToken,refreshToken}
+        return {accessToken,refreshToken,role:userExits.role}
     }
 
    async meDB(payload:{id:string}&IAuth){

@@ -12,6 +12,8 @@ import { serviceRouter } from './module/service/service.route'
 
 import { reviewRouter } from './module/review/review.route'
 import { paymentrouter } from './module/payment/payment.route'
+import { customerRouter } from './module/customer/customer.route'
+
 
 const app:Application=express()
 app.use(express.json())
@@ -32,5 +34,6 @@ app.use('/api/admin',adminroutes)
 app.use('/api/bookings',bookingsrouter)
 app.use('/api/payments',paymentrouter)
 app.use('/api/reviews',reviewRouter)
+app.use('/api/customer/',customerRouter)
 
 export default app

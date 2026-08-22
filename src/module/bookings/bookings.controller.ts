@@ -9,6 +9,7 @@ class BookingsController extends baseController{
     createBookings=this.handle(async(req:Request,res:Response)=>{
         const body=req.body 
         const userId=req.user?.id
+        
         const payload={...body,userId}
         const  booking=await bookingsService.createBookings(payload)
           sendResponse(res,{success:true,message:'bookings is successfully', status:statusCode.CREATED , data:booking})
