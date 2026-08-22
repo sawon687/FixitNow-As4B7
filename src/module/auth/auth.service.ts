@@ -9,7 +9,7 @@ import { SignOptions } from 'jsonwebtoken';
 class AuthService {
    async createdb(payload:IAuth){
          {
-        const { email, password ,name,role} = payload
+        const { email, password ,name,role,profilePhoto} = payload
      
         
         const userexits = await prisma.users.findUnique({ where: { email } })
@@ -22,7 +22,9 @@ class AuthService {
             email,
             password: hashedPassword,
             name,
-            role
+            role,
+            profilePhoto
+
         },
     omit:{password:true}})
        

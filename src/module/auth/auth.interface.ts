@@ -5,7 +5,8 @@ export interface IAuth {
     name: string,
     email: string,
     password: string,
-    role:Role
+    role:Role,
+    profilePhoto:string
 
 }
 
