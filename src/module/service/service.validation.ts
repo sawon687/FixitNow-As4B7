@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const createServiceValidationSchema = z.object({
   body: z.object({
-    categoryId: z.string().uuid("Category ID must be a valid UUID"),
+    categoryId: z.string().uuid("Category is Required"),
 
     title: z
       .string()
