@@ -24,7 +24,7 @@ class TecnichianController extends baseController {
     updatetechnicianProfile = this.handle(async (req: Request, res: Response) => {
     const payload = req.body as ITecnichianProfile;
     const id = req.user?.id as string;
-    const profilepayload = { ...payload, userId: id };
+    const profilepayload = { ...payload,userId:id};
     console.log("profile technichian", profilepayload);
     const user = await tecnichianService.updateprofiledb(profilepayload);
     sendResponse(res, {

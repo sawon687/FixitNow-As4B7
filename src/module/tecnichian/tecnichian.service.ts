@@ -32,7 +32,7 @@ class TecnichianService {
 
 
     async updateprofiledb(payload: ITecnichianProfile) {
-    const { userId, bio, skills, location, yearsOfExperience} = payload;
+    const { userId, bio, skills, location, yearsOfExperience,profilePhoto} = payload;
 
     const profileExits = await prisma.technicianProfile.findUnique({
       where: {userId },
@@ -41,16 +41,31 @@ class TecnichianService {
       throw new Error("This  profile not exits");
     }
 
-    const result = await prisma.technicianProfile.update({where:{id:profileExits.id},
-      data: {
-        userId,
-        bio,
-        skills,
-        location,
-        yearsOfExperience,
-      },
-    });
+  
 
+   const result = await prisma.$transaction(async (x) => {
+    const user = await x.users.update({
+          where:{id:userId},
+          data:{profilePhoto},
+          omit:{password:true
+          }
+    });
+    
+     const profile = await x.technicianProfile.update({
+       where: { id: profileExits.id },
+       data: {
+         userId,
+         bio,
+         skills,
+         location,
+         yearsOfExperience,
+        
+       },
+     });
+
+     return { user, profile };
+   });
+  
    
 
       return result;
@@ -258,7 +273,10 @@ if(!technicianProfile){
        throw new Error('This tecnishian not found pleace update your tecnishian')
     }
    
-      const results=await prisma.booking.findMany({where:{technicianId:technicianProfile.id}})
+      const results=await prisma.booking.findMany({where:{technicianId:technicianProfile.id},
+      include:{
+        payment:true
+      }})
       return results
    }
 

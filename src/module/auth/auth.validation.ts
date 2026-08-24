@@ -1,8 +1,10 @@
 import { z } from "zod";
 
+
+
 const userLoginValidationSchema = z.object({
   body: z.object({
-     name: z
+    name: z
       .string()
       .trim()
       .min(1, "Name is required")
@@ -14,11 +16,14 @@ const userLoginValidationSchema = z.object({
       .trim()
       .min(1, "Email is required")
       .refine(
-        (value) => value === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+        (value) =>
+          value === "" ||
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
         {
           message: "Email is not valid",
-        },
+        }
       ),
+
     password: z
       .string()
       .trim()
@@ -38,14 +43,17 @@ const userLoginValidationSchema = z.object({
           });
         }
       }),
-       role: z
-      .enum(["CUSTOMER", "TECHNICIAN"], {
-        message: "Role must be CUSTOMER, TECHNICIAN",
-      })
+
+    role: z.enum(["CUSTOMER", "TECHNICIAN"], {
+      message: "Role must be CUSTOMER, TECHNICIAN",
+    }),
+
+  
+    profilePhoto: z
+      .string()
+      .url("Invalid profile photo URL")
       .optional(),
   }),
-
-    
 });
 
 export const authValidation = {

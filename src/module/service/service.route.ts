@@ -12,5 +12,5 @@ router.post('/services',validationReq(serviceValidation.createServiceValidationS
 router.get('/services',serviceController.getService)
 router.get('/categories',adminController.getAllCategory)
 router.get('/services/:id',serviceController.getsingleServices)
-
+router.patch('/update-service/:id',validationReq(serviceValidation.createServiceValidationSchema),auth('TECHNICIAN'),serviceController.updateService)
 export const serviceRouter=router

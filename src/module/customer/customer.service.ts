@@ -4,7 +4,7 @@ import { prisma } from '../../lib/prisma'
 class CustomerService{
     async getCustomerDashboardDB(userId:string) {
         
-        const [totalBookingCount,activeBookingCount,totalSpentPayment,
+        const [totalBookingCount,activeBookingCount,totalCompletedCount,
             paymentPaid,bookingInfo,pendingAmount,
             cancelledPayment,review]=await Promise.all([
                 //  total Booking Count
@@ -104,7 +104,7 @@ class CustomerService{
             totalBookingCount,
             activeBookingCount,
               paymentPaid,
-            totalSpentPayment,
+           totalCompletedCount,
             bookingInfo,
             pendingAmount,
             cancelledPayment,

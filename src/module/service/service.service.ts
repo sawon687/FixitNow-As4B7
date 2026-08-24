@@ -6,7 +6,7 @@ import { ServiceWhereInput } from '../../../generated/prisma/models';
 
 class ServicesService {
   async createServicedb(payload: IService, userId: string) {
-    const { title, description, price, priceType, location } = payload;
+    const { title, description, price, priceType } = payload;
     const technicianProfileExits = await prisma.technicianProfile.findUnique({
       where: { userId },
     });
@@ -15,6 +15,8 @@ class ServicesService {
         "tecnician profile is not found! pleace techchian profile updated",
       );
     }
+
+
 
     const technicianId = String(technicianProfileExits.id);
     const categoryId = String(payload.categoryId);
@@ -33,6 +35,35 @@ class ServicesService {
     return results;
   }
 
+   async updateServicedb(payload: IService & {serviceId:string}, userId: string) {
+    const { title, description, price, priceType,serviceId } = payload;
+    const technicianProfileExits = await prisma.technicianProfile.findUnique({
+      where: { userId },
+    });
+    if (!technicianProfileExits) {
+      throw new Error(
+        "tecnician profile is not found! pleace techchian profile updated",
+      );
+    }
+
+
+    
+    const technicianId = String(technicianProfileExits.id);
+    const categoryId = String(payload.categoryId);
+    const results = await prisma.service.update({where:{id:serviceId},
+      data: {
+        title,
+        technicianId,
+        categoryId,
+        description,
+        price,
+        priceType,
+        userId,
+      },
+    });
+    console.log("service results", results);
+    return results;
+  }
  async getAllServices(query: IServiceQuery) {
   const {
     category,

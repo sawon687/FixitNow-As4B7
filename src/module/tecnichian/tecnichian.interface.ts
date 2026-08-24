@@ -2,10 +2,11 @@ import { AvailabilityStatus, BookingStatus } from '../../../generated/prisma/enu
 
 export interface ITecnichianProfile {
      userId:string
-      yearsOfExperience:number,
+     yearsOfExperience:number,
      bio: string,
      skills: string[],
      location:string
+     profilePhoto:string
 
 }
 

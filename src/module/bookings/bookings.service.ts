@@ -1,10 +1,12 @@
 
+import { error } from 'node:console';
 import {
-  BookingStatus,
+  
   BookingWhereInput,
 } from "../../../generated/prisma/models";
 import { prisma } from "../../lib/prisma";
 import { ICreateBookingDTO } from "./bookings.interface";
+import { BookingStatus } from '../../../generated/prisma/enums';
 
 class BookingsService {
   async createBookings(payload: ICreateBookingDTO) {
@@ -32,15 +34,26 @@ class BookingsService {
     return results;
   }
   async getMyBokingsdb(userId: string, status: string) {
-    const whereCondition: BookingWhereInput = { userId };
+    const whereCondition: BookingWhereInput = {  };
 
     if (status &&  status!=="undefined" && status!=="ALL") {
       whereCondition.status = { equals: status as BookingStatus };
     }
+
+    if(!userId)
+    {
+       throw new Error('user not login pleace login')
+    }
+
+    whereCondition.userId=userId
     console.log("conditon", whereCondition);
     const results = await prisma.booking.findMany({
       where: whereCondition,
-      include: { review: true, payment: true },
+      include: { review: true, service:true, payment:true,technician:{
+        include:{
+          users:true
+        }
+      } },
     });
     console.log("bookns", results);
     return results;

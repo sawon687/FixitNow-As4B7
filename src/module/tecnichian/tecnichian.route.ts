@@ -13,7 +13,7 @@ router.post('/profile',
     validationReq(technicianValidation.technicianProfileValidationSchema),
     auth('TECHNICIAN'),tecnichianController.tecnProfile)
     router.patch('/profile-update',
-    validationReq(technicianValidation.technicianProfileValidationSchema),
+    validationReq(technicianValidation.updateTechnicianProfileValidationSchema),
     auth('TECHNICIAN'),tecnichianController.updatetechnicianProfile)
 router.get('/',tecnichianController.getAlltecnishian)
 router.post('/availability',auth('TECHNICIAN'),tecnichianController.createAvalibility)
