@@ -122,8 +122,8 @@ async getAllCategorydb(search: string) {
     }
 
     const limit = 6;
-    const pageNumber = Number(normalizedPage) || 1;
-    const skip = (pageNumber - 1) * limit;
+    const currentPage = Number(normalizedPage) || 1;
+    const skip = (currentPage- 1) * limit;
 
     const [users, totalUserCount] = await Promise.all([
       prisma.users.findMany({
@@ -134,6 +134,7 @@ async getAllCategorydb(search: string) {
       prisma.users.count({ where: whereCondition }),
     ]);
 
+    const pageNumber=Math.ceil(totalUserCount/limit)
     return { users, totalUserCount, pageNumber, limit };
   }
 

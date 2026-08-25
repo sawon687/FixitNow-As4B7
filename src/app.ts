@@ -23,6 +23,7 @@ app.use(cors({
     origin:config.appurl,
     credentials:true
 }))
+
 app.get('/',(req:Request,res:Response)=>{
     res.send('Fixit prisma project')
 })

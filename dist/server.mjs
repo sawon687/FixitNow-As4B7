@@ -1676,7 +1676,7 @@ var service_controller_default = new ServiceController();
 import { z as z5 } from "zod";
 var createServiceValidationSchema = z5.object({
   body: z5.object({
-    categoryId: z5.string().uuid("Category ID must be a valid UUID"),
+    categoryId: z5.string().uuid("Category is Required"),
     title: z5.string().trim().min(1, "Title is required").min(3, "Title must be at least 3 characters").max(100, "Title must not exceed 100 characters"),
     description: z5.string().trim().min(1, "Description is required").min(10, "Description must be at least 10 characters").max(1e3, "Description must not exceed 1000 characters"),
     price: z5.number({
@@ -2191,7 +2191,6 @@ var app_default = app;
 var port = config_default.port;
 async function main() {
   try {
-    await prisma.$connect();
     console.log("database is connect posgresql");
     app_default.listen(port, () => {
       console.log(`Example app listening on port ${port}`);
