@@ -7,7 +7,7 @@ import { prisma } from './lib/prisma';
 const port=config.port
 async function main(){
   try {
-        // await prisma.$connect()
+        await prisma.$connect()
         console.log('database is connect posgresql')
       app.listen(port,()=>{
           console.log(`Example app listening on port ${port}`)
