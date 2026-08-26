@@ -49,10 +49,17 @@ const userLoginValidationSchema = z.object({
     }),
 
   
-    profilePhoto: z
-      .string()
-      .url("Invalid profile photo URL")
-      .optional(),
+ profilePhoto: z
+  .string({
+    error: (issue) =>
+      issue.input === undefined
+        ? "Profile photo is required"
+        : "Profile photo must be a string",
+  })
+  .url({
+    message: "Invalid profile photo URL",
+  }),
+     
   }),
 });
 

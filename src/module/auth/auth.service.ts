@@ -15,6 +15,11 @@ class AuthService {
       if (userexits) {
         throw new Error("This email Allready exits");
       }
+
+      if(!profilePhoto)
+      {
+         throw new Error("Invalid profile photo URL");
+      }
       const hashedPassword = await bcrypt.hash(
         password,
         Number(config.bycriptHashRound),
